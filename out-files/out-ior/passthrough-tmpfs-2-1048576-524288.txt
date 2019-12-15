@@ -1,0 +1,40 @@
+IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
+Began               : Sun Dec 15 21:22:42 2019
+Command line        : ./ior -t 524288 -b 1048576 -w -r -o /dev/shm/testfile
+Machine             : Linux lucy-GS70-2PC-Stealth
+TestID              : 0
+StartTime           : Sun Dec 15 21:22:42 2019
+Path                : /dev/shm
+FS                  : 7.8 GiB   Used FS: 2.5%   Inodes: 1.9 Mi   Used Inodes: 0.1%
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : /dev/shm/testfile
+access              : single-shared-file
+type                : independent
+segments            : 1
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+tasks               : 1
+clients per node    : 1
+repetitions         : 1
+xfersize            : 524288 bytes
+blocksize           : 1 MiB
+aggregate filesize  : 1 MiB
+
+Results: 
+
+access    bw(MiB/s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s) iter
+------    ---------  ---------- ---------  --------   --------   --------   -------- ----
+write     4604       1024.00    512.00     0.000008   0.000207   0.000002   0.000217   0   
+read      8654       1024.00    512.00     0.000002   0.000112   0.000001   0.000116   0   
+remove    -          -          -          -          -          -          0.000075   0   
+Max Write: 4604.39 MiB/sec (4828.05 MB/sec)
+Max Read:  8653.66 MiB/sec (9074.02 MB/sec)
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write        4604.39    4604.39    4604.39       0.00    9208.78    9208.78    9208.78       0.00    0.00022         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   524288       1.0 POSIX      0
+read         8653.66    8653.66    8653.66       0.00   17307.33   17307.33   17307.33       0.00    0.00012         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   524288       1.0 POSIX      0
+Finished            : Sun Dec 15 21:22:42 2019
