@@ -4,15 +4,20 @@
 
 # Options: Parameter $1
 
-# clean   remove all the tests inside directory out
-# none    preserve the files and run only the ones that were not run before
+# tmpfs (/dev/shm/)
+# fuse (mnt/dev/shm/)
+
+# Options: Parameter $2
+
+# passthrough
+# passthrough_ll
+# passthrough_fh
+# passthrough_hp
 
 ###############################################################################
 
 spack load -r openmpi
 spack load gcc
-
-filter='passthrough'
 
 dir=$1
 
@@ -24,18 +29,12 @@ if [ $dir == 'fuse' ]
 then test_dir=mnt/dev/shm/testfile
 fi
 
-#test_dir=/tmp/test
-#dir=tmp
+filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
-./example/passthrough mnt/   # All tests with passthrough
-
-if [ $2 == 'clean' ]
-then rm -rf out-md
-fi
-
+./example/$filter mnt/
 mkdir -p out-md
 
 function run_file(){
@@ -44,7 +43,7 @@ function run_file(){
   psize=$3
   nproc=$4
 
-  file=out-md/${filter}-${dir}-${run}-${nproc}.txt
+  file=out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
   then mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isize} -P=${psize} -- -D ${test_dir} > out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
   fi

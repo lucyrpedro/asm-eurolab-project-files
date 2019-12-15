@@ -20,9 +20,7 @@ d = read.csv("results-dd.csv")
 blocksize_op = c(4, 16, 100, 128, 1000);
 size_op = c(30000);
 
-# filter_op = 'passthrough'
-#filter_op   = c("passthrough", "passthrough_fh", "passthrough_hp", "passthrough_ll")
-filter_op   = c("passthrough") #, "passthrough_ll", "passthrough_fh")
+filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 
 for (k in 1:length(filter_op)){
 

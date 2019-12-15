@@ -32,9 +32,7 @@ for (i in 1:length(isize_op)){
   }
 }
 
-# print(legend_vet)
-
-filter_op   = c("passthrough") # , "passthrough_ll", "passthrough_fh")
+filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 
 for (k in 1:length(filter_op)){
 
@@ -42,13 +40,13 @@ for (k in 1:length(filter_op)){
 
     # print(d_filter)
 
-#    for (l in 1:1){
     for (l in 1:length(nproc_op)){
 
         datap     = subset(data,   nproc == nproc_op[l])
 
         data_rtime        = numeric(0)
         data_wtime        = numeric(0)
+        data_ttime        = numeric(0)
         data_rate_iops    = numeric(0)
         data_rate_objs    = numeric(0)
 
@@ -58,10 +56,9 @@ for (k in 1:length(filter_op)){
 
                 dataip     = subset(datap,   isize == isize_op[j] & psize == psize_op[i])
 
-    #            print(dim(dataip))
-
                 data_rtime          = c(data_rtime, dataip$read_time1)
                 data_wtime          = c(data_wtime, dataip$write_time1)
+                data_ttime          = c(data_ttime, dataip$total_time)
                 data_rate_iops      = c(data_rate_iops, dataip$rate_iops)
                 data_rate_objs      = c(data_rate_objs, dataip$rate_objs)
 
@@ -126,6 +123,29 @@ for (k in 1:length(filter_op)){
                 names = c("Write", rep("", len_class-1)),
                 xaxs = FALSE, main=title, ylab="Time Write")
 #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+        # TOTAL TIME
+
+        len_class = length(isize_op)*length(psize_op);     # number of options for the classes
+        len = length(data_ttime)/len_class;                # number of run
+
+        DF = data.frame(
+        x = c(data_ttime),
+        y = rep(c(1:1:len_class), each = len),
+        z = rep(rep(1, each = len*len_class), 1), # write
+        stringsAsFactors = FALSE
+        )
+        #           str(DF)
+        #           print(DF)
+
+        title = sprintf("MD-Workbench Total Time - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+
+        cols = rainbow(len_class, s = 0.5)
+        boxplot(x ~ z + y, data = DF,
+                at = c(1:(len_class)), col = cols,
+                names = c("Time", rep("", len_class-1)),
+                xaxs = FALSE, main=title, ylab="Total Time")
+        #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
         # RATE - IOPS
 

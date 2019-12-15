@@ -24,12 +24,7 @@ d = read.csv("results-ior.csv")
 blocksize_op = c(1048576, 2097152)
 transfersize_op = c(262144, 524288)
 
-#blocksize_op=c(1000, 2000, 5000, 10000)
-#transfersize_op=c(2000, 5000, 10000)
-
-# filter_op = 'passthrough'
-#filter_op   = c("passthrough", "passthrough_fh", "passthrough_hp", "passthrough_ll")
-filter_op   = c("passthrough") # , "passthrough_ll", "passthrough_fh")
+filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 
 for (k in 1:length(filter_op)){
 
@@ -77,14 +72,13 @@ for (k in 1:length(filter_op)){
 
         len_bs = length(blocksize_op)       # number of options for the blocksize
         len = length(read_tmpfs_time)/len_bs;   # number of run
-        n_files = len_bs;                   # number of plots of each type
 
         # #### TIME READ
 
         DF = data.frame(
         x = c(read_tmpfs_time, read_fuse_time),
-        y = rep(c("READ TMPFS", "READ FUSE"), each = n_files*len),
-        z = rep(rep(1:n_files, each=len), 2), # two categories, read and write
+        y = rep(c("READ TMPFS", "READ FUSE"), each = len_bs*len),
+        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
 #        str(DF)
@@ -94,7 +88,7 @@ for (k in 1:length(filter_op)){
         title = sprintf("Filter %s - Transfer Size %d", filter_op[k], transfersize_op[j]);
 
 #        pdf(filename)
-        cols = rainbow(n_files, s = 0.5)
+        cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
@@ -105,8 +99,8 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(write_tmpfs_time, write_fuse_time),
-        y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = n_files*len),
-        z = rep(rep(1:n_files, each=len), 2), # two categories, read and write
+        y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = len_bs*len),
+        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -116,7 +110,7 @@ for (k in 1:length(filter_op)){
         title = sprintf("Filter %s - Transfer Size %d", filter_op[k], transfersize_op[j]);
 
 #        pdf(filename)
-        cols = rainbow(n_files, s = 0.5)
+        cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
@@ -127,8 +121,8 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(read_tmpfs_tp, read_fuse_tp),
-        y = rep(c("READ TMPFS", "READ FUSE"), each = n_files*len),
-        z = rep(rep(1:n_files, each=len), 2), # two categories, read and write
+        y = rep(c("READ TMPFS", "READ FUSE"), each = len_bs*len),
+        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -138,7 +132,7 @@ for (k in 1:length(filter_op)){
         title = sprintf("Filter %s - Transfer Size %d", filter_op[k], transfersize_op[j]);
 
 #        pdf(filename)
-        cols = rainbow(n_files, s = 0.5)
+        cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
@@ -149,8 +143,8 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(write_tmpfs_tp, write_fuse_tp),
-        y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = n_files*len),
-        z = rep(rep(1:n_files, each=len), 2), # two categories, read and write
+        y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = len_bs*len),
+        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -160,7 +154,7 @@ for (k in 1:length(filter_op)){
         title = sprintf("Filter %s - Transfer Size %d", filter_op[k], transfersize_op[j]);
 
 #        pdf(filename)
-        cols = rainbow(n_files, s = 0.5)
+        cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),

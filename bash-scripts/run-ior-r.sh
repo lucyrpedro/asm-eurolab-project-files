@@ -9,15 +9,15 @@
 
 # Options: Parameter $2
 
-# clean   remove all the tests inside directory out
-# none    preserve the files and run only the ones that were not run before
+# passthrough
+# passthrough_ll
+# passthrough_fh
+# passthrough_hp
 
 ###############################################################################
 
 spack load -r openmpi
 spack load gcc
-
-filter='passthrough'
 
 dir=$1
 
@@ -29,15 +29,12 @@ if [ $dir == 'fuse' ]
 then test_dir=mnt/dev/shm/testfile
 fi
 
+filter=$2
+
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
-./example/passthrough mnt/   # All tests with passthrough
-
-if [ $2 == 'clean' ]
-then rm -rf out-ior-r
-fi
-
+./example/$filter mnt/
 mkdir -p out-ior-r
 
 function run_file(){

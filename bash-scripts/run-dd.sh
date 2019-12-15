@@ -4,6 +4,11 @@
 
 # Options: Parameter $1
 
+# tmpfs (/dev/shm/)
+# fuse (mnt/dev/shm/)
+
+# Options: Parameter $2
+
 # passthrough
 # passthrough_ll
 # passthrough_fh
@@ -14,35 +19,26 @@
 #        ./example/passthrough_hp [options] <source> <mountpoint>
 # What's source?
 
-# Options: Parameter $2
-
-# tmpfs (/dev/shm/)
-# fuse (mnt/dev/shm/)
-
 # Options: Parameter $3
 
-# clean   remove all the tests inside directory out
-# none    preserve the files and run only the ones that were not run before
+# Number of executions -- NOT WORKING
 
 # Options: Parameter $4
 
-# Number of executions -- NOT WORKING
+# Size of the file -- NOT WORKING
 
 # Options: Parameter $5
 
-# Size of the file -- NOT WORKING
-
-# Options: Parameter $6
-
-# Number of executions -- NOT WORKING
+# Number of processors -- NOT WORKING
 
 ###############################################################################
+
+# Insert something to run only when necessary
 
 spack load -r openmpi
 spack load gcc
 
-filter=$1
-dir=$2
+dir=$1
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -52,15 +48,12 @@ if [ $dir == 'fuse' ]
 then test_dir=mnt/dev/shm/testfile
 fi
 
+filter=$2
+
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
 ./example/$filter mnt/
-
-if [ $3 == 'clean' ]
-then rm -rf out-dd
-fi
-
 mkdir -p out-dd
 
 function run_file(){

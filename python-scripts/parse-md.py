@@ -58,7 +58,6 @@ f_out = 0
 files = sys.argv[1:]
 for file in files:
     f_in += 1
-#    print(file)
     data_M["file"] = file
     data_M["options"] = 'md'
 
@@ -73,8 +72,6 @@ for file in files:
 
     f = open(file, "r")
     for l in f:
-
-#benchmark process max:14.44s min:14.4s mean: 14.4s balance:100.0 stddev:-nan rate:27695.4 iops/s objects:100000 rate:6923.9 obj/s tp:51.5 MiB/s op-max:4.9339e-02s (0 errs) read(3.0695e-05s, 4.1175e-05s, 4.6717e-05s, 7.5383e-05s, 1.0939e-04s, 2.4943e-04s, 4.9339e-02s) stat(4.1300e-06s, 6.6200e-06s, 8.0460e-06s, 1.0173e-05s, 1.4507e-05s, 2.9337e-05s, 5.6222e-04s) create(1.4245e-05s, 1.8403e-05s, 2.2669e-05s, 2.7534e-05s, 3.4044e-05s, 7.6474e-05s, 2.5162e-03s) delete(1.3131e-05s, 1.5514e-05s, 1.9098e-05s, 2.3236e-05s, 2.8676e-05s, 6.4129e-05s, 1.2412e-02s)
 
         m = re.match(".*benchmark process.*rate:(?P<rate_iops>[0-9.]*) iops/s.*rate:(?P<rate_objs>[0-9.]*) obj/s.*op-max:([0-9e.\-+]*)s.*read\((?P<read_time1>[0-9e.\-+]*)s, (?P<read_time2>[0-9e.\-+]*)s, (?P<read_time3>[0-9e.\-+]*)s, (?P<read_time4>[0-9e.\-+]*)s, (?P<read_time5>[0-9e.\-+]*)s, (?P<read_time6>[0-9e.\-+]*)s, (?P<read_time7>[0-9e.\-+]*)s\).*stat\(([0-9e.\-+]*)s.*create\((?P<write_time1>[0-9e.\-+]*)s, (?P<write_time2>[0-9e.\-+]*)s, (?P<write_time3>[0-9e.\-+]*)s, (?P<write_time4>[0-9e.\-+]*)s, (?P<write_time5>[0-9e.\-+]*)s, (?P<write_time6>[0-9e.\-+]*)s, (?P<write_time7>[0-9e.\-+]*)s\).*delete\(([0-9e.\-+]*)s.*", l)
 
@@ -93,9 +90,6 @@ for file in files:
     f.close()
 
 fd.close()
-
-# print(f_in)
-# print(f_out/2)
 
 if f_in != f_out/2:
     print("Some files were not properly processed!")
