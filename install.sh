@@ -26,31 +26,31 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-# ./run-dd.sh tmpfs passthrough
-# ./run-dd.sh fuse passthrough
-# ./run-dd.sh tmpfs passthrough_ll
-# ./run-dd.sh fuse passthrough_ll
-# ./run-dd.sh tmpfs passthrough_fh
-# ./run-dd.sh fuse passthrough_fh
+./run-dd.sh tmpfs passthrough
+./run-dd.sh fuse passthrough
+./run-dd.sh tmpfs passthrough_ll
+./run-dd.sh fuse passthrough_ll
+./run-dd.sh tmpfs passthrough_fh
+./run-dd.sh fuse passthrough_fh
 
-# cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
-#
-# cd out-dd
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+
+cd out-dd
 
 # Running the Python script to parse the results to a csv file
 
-# python3 parse-dd.py *.txt
+python3 parse-dd.py *.txt
 
 # Saving results and intermediate files
 
-# cp -f results-dd.csv ../../../asm-eurolab-project-files
-# cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
+cp -f results-dd.csv ../../../asm-eurolab-project-files
+cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
 
-# cd ..
-# rm -rf out-dd
-# rm run-dd.sh
+cd ..
+rm -rf out-dd
+rm run-dd.sh
 
 ##### Install ior and then copy the executable!!!
 
@@ -78,11 +78,11 @@ echo 'xxxxxxxxxxxxxxxxxx'
 # Running the filters with a Bash script
 
 ./run-ior-s-mpi.sh tmpfs passthrough
-# ./run-ior-s-mpi.sh fuse passthrough
-# ./run-ior-s-mpi.sh tmpfs passthrough_ll
-# ./run-ior-s-mpi.sh fuse passthrough_ll
-# ./run-ior-s-mpi.sh tmpfs passthrough_fh
-# ./run-ior-s-mpi.sh fuse passthrough_fh
+./run-ior-s-mpi.sh fuse passthrough
+./run-ior-s-mpi.sh tmpfs passthrough_ll
+./run-ior-s-mpi.sh fuse passthrough_ll
+./run-ior-s-mpi.sh tmpfs passthrough_fh
+./run-ior-s-mpi.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
 
@@ -108,11 +108,11 @@ cd ../
 # Running the filters with a Bash script
 
 ./run-ior-s-mpi-r.sh tmpfs passthrough
-# ./run-ior-s-mpi-r.sh fuse passthrough
-# ./run-ior-s-mpi-r.sh tmpfs passthrough_ll
-# ./run-ior-s-mpi-r.sh fuse passthrough_ll
-# ./run-ior-s-mpi-r.sh tmpfs passthrough_fh
-# ./run-ior-s-mpi-r.sh fuse passthrough_fh
+./run-ior-s-mpi-r.sh fuse passthrough
+./run-ior-s-mpi-r.sh tmpfs passthrough_ll
+./run-ior-s-mpi-r.sh fuse passthrough_ll
+./run-ior-s-mpi-r.sh tmpfs passthrough_fh
+./run-ior-s-mpi-r.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
 
@@ -151,11 +151,11 @@ cd ../libfuse/build/
 # Running the filters with a Bash script
 
 ./run-md.sh tmpfs passthrough
-# ./run-md.sh fuse passthrough
-# ./run-md.sh tmpfs passthrough_ll
-# ./run-md.sh fuse passthrough_ll
-# ./run-md.sh tmpfs passthrough_fh
-# ./run-md.sh fuse passthrough_fh
+./run-md.sh fuse passthrough
+./run-md.sh tmpfs passthrough_ll
+./run-md.sh fuse passthrough_ll
+./run-md.sh tmpfs passthrough_fh
+./run-md.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
 
