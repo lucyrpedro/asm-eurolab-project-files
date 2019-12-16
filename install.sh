@@ -43,7 +43,7 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Saving results and intermediate files
 
-# cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database
+# cp -f results-dd.csv ../../../asm-eurolab-project-files
 # cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
@@ -63,7 +63,6 @@ echo 'Running ior'
 echo 'xxxxxxxxxxxxxxxxxx'
 
 cd ../../asm-eurolab-project-files
-ls
 cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
 cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
 cp benchmarks/ior ../libfuse/build/
@@ -79,11 +78,11 @@ echo 'xxxxxxxxxxxxxxxxxx'
 # Running the filters with a Bash script
 
 ./run-ior-s-mpi.sh tmpfs passthrough
-./run-ior-s-mpi.sh fuse passthrough
-./run-ior-s-mpi.sh tmpfs passthrough_ll
-./run-ior-s-mpi.sh fuse passthrough_ll
-./run-ior-s-mpi.sh tmpfs passthrough_fh
-./run-ior-s-mpi.sh fuse passthrough_fh
+# ./run-ior-s-mpi.sh fuse passthrough
+# ./run-ior-s-mpi.sh tmpfs passthrough_ll
+# ./run-ior-s-mpi.sh fuse passthrough_ll
+# ./run-ior-s-mpi.sh tmpfs passthrough_fh
+# ./run-ior-s-mpi.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
 
@@ -95,7 +94,8 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
+ls
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi.csv
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s-mpi
@@ -109,11 +109,11 @@ cd ../
 # Running the filters with a Bash script
 
 ./run-ior-s-mpi.sh tmpfs passthrough
-./run-ior-s-mpi.sh fuse passthrough
-./run-ior-s-mpi.sh tmpfs passthrough_ll
-./run-ior-s-mpi.sh fuse passthrough_ll
-./run-ior-s-mpi.sh tmpfs passthrough_fh
-./run-ior-s-mpi.sh fuse passthrough_fh
+# ./run-ior-s-mpi.sh fuse passthrough
+# ./run-ior-s-mpi.sh tmpfs passthrough_ll
+# ./run-ior-s-mpi.sh fuse passthrough_ll
+# ./run-ior-s-mpi.sh tmpfs passthrough_fh
+# ./run-ior-s-mpi.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r
 
@@ -125,7 +125,7 @@ python3 parse-ior-s-mpi-r.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi-r.csv
 cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
@@ -168,7 +168,7 @@ python3 parse-md.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-md.csv ../../../asm-eurolab-project-files/results-database
+cp -f results-md.csv ../../../asm-eurolab-project-files/
 cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
