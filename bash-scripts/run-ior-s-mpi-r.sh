@@ -36,7 +36,7 @@ rm -rf out
 mkdir -p mnt
 fusermount -u mnt || /bin/true
 ./example/$filter mnt/
-mkdir -p out-ior-s-mpi
+mkdir -p out-ior-s-mpi-r
 
 function run_file(){
   run=$1
@@ -47,9 +47,9 @@ function run_file(){
   div=$((1024*1024*${size}*${nproc}))
   segments=$((${filesize}/${div}))
 
-  file=out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt
+  file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-   then mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+   then mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }

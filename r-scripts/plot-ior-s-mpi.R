@@ -21,8 +21,11 @@ pdf("figs-ior.pdf") # either save all files in one pdf or the files in specific 
 
 d = read.csv("results-ior.csv")
 
-nproc_op = c(1, 2)
-size_op = c(2000, 5000)
+# nproc_op = c(1, 2)
+# size_op = c(2000, 5000)
+
+nproc_op = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+size_op = (1048576, 2097152, 5242880, 10485760)
 
 filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 

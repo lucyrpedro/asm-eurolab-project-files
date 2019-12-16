@@ -63,97 +63,11 @@ echo 'Running ior'
 echo 'xxxxxxxxxxxxxxxxxx'
 
 cd ../../asm-eurolab-project-files
-cp -f bash-scripts/run-ior.sh ../libfuse/build/
-cp -f bash-scripts/run-ior-r.sh ../libfuse/build/
-cp -f bash-scripts/run-ior-s.sh ../libfuse/build/
 cp -f bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
+cp -f bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
 cp -f benchmarks/ior ../libfuse/build/
 
 cd ../libfuse/build/
-
-## Running IOR
-
-# Running the filters with a Bash script
-
-./run-ior.sh tmpfs passthrough
-./run-ior.sh fuse passthrough
-./run-ior.sh tmpfs passthrough_ll
-./run-ior.sh fuse passthrough_ll
-./run-ior.sh tmpfs passthrough_fh
-./run-ior.sh fuse passthrough_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior
-
-cd out-ior
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-ior.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database
-cp -rf ../out-ior ../../../asm-eurolab-project-files/out-files
-
-## Running IOR-r
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running ior-random'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-cd ../
-
-# Running the filters with a Bash script
-
-./run-ior-r.sh tmpfs passthrough
-./run-ior-r.sh fuse passthrough
-./run-ior-r.sh tmpfs passthrough_ll
-./run-ior-r.sh fuse passthrough_ll
-./run-ior-r.sh tmpfs passthrough_fh
-./run-ior-r.sh fuse passthrough_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior-r
-
-cd out-ior-r
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-ior.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-r.csv
-cp -rf ../out-ior-r ../../../asm-eurolab-project-files/out-files
-
-## Running IOR-s
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running ior-segments'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-cd ../
-
-# Running the filters with a Bash script
-
-./run-ior-s.sh tmpfs passthrough
-./run-ior-s.sh fuse passthrough
-./run-ior-s.sh tmpfs passthrough_ll
-./run-ior-s.sh fuse passthrough_ll
-./run-ior-s.sh tmpfs passthrough_fh
-./run-ior-s.sh fuse passthrough_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior-s
-
-cd out-ior-s
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-ior.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s.csv
-cp -rf ../out-ior-s ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s-mpi
 
@@ -185,16 +99,40 @@ python3 parse-ior-s-mpi.py *.txt
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
+## Running IOR-s-mpi
+
+echo 'xxxxxxxxxxxxxxxxxx'
+echo 'Running ior-segments-mpi-random'
+echo 'xxxxxxxxxxxxxxxxxx'
+
+cd ../
+
+# Running the filters with a Bash script
+
+./run-ior-s-mpi.sh tmpfs passthrough
+./run-ior-s-mpi.sh fuse passthrough
+./run-ior-s-mpi.sh tmpfs passthrough_ll
+./run-ior-s-mpi.sh fuse passthrough_ll
+./run-ior-s-mpi.sh tmpfs passthrough_fh
+./run-ior-s-mpi.sh fuse passthrough_fh
+
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r
+
+cd out-ior-s-mpi-r
+
+# Running the Python script to parse the results to a csv file
+
+python3 parse-ior-s-mpi-r.py *.txt
+
+# Saving results and intermediate files
+
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
+
 # Cleaning the files
 
 cd ..
-rm -rf out-ior
-rm -rf out-ior-r
-rm -rf out-ior-s
-rm -rf out-ior-s-mpi
-rm run-ior.sh
-rm run-ior-r.sh
-rm run-ior-s.sh
+rm -rf out-ior-s-mpi-r
 rm run-ior-s-mpi.sh
 rm ior
 

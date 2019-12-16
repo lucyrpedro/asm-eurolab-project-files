@@ -17,8 +17,14 @@ pdf("figs-dd.pdf") # either save all files in one pdf or the files in specific p
 
 d = read.csv("results-dd.csv")
 
-blocksize_op = c(4, 16, 100, 128, 1000);
-size_op = c(30000);
+# blocksize_op = c(4, 16, 100, 128, 1000);
+# size_op = c(30000);
+
+# blocksize_op = c(4, 16, 100, 128, 1000, 8192, 10000)
+# size_op = c(10000, 100000, 1000000)
+
+blocksize_op = c(10000, 16384, 100000, 131072, 1000000, 1048576)
+filesize_op = c(1000000, 1048576)
 
 filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 
@@ -73,7 +79,7 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(x_read_tmpfs_time, x_read_fuse_time),
-        y = rep(c("READ TMP", "READ"), each = len_bs*len),
+        y = rep(c("TIME READ TMPFS", "TIME READ FUSE"), each = len_bs*len),
         z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
@@ -87,7 +93,7 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "T", "M", "P", rep("", len_bs-4),"Read", rep("",len_bs-1)),
+                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
                 xaxs = FALSE, main=title, ylab="Time")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
@@ -95,7 +101,7 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(x_write_tmpfs_time, x_write_fuse_time),
-        y = rep(c("READ TMP", "READ"), each = len_bs*len),
+        y = rep(c("TIME WRITE TMPFS", "TIME WRITE FUSE"), each = len_bs*len),
         z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
@@ -109,7 +115,7 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "T", "M", "P", rep("", len_bs-4),"Write", rep("",len_bs-1)),
+                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
                 xaxs = FALSE, main=title, ylab="Time")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
@@ -117,7 +123,7 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(x_read_tmpfs_tp, x_read_fuse_tp),
-        y = rep(c("READ TMP", "READ"), each = len_bs*len),
+        y = rep(c("TP READ TMPFS", "TP READ FUSE"), each = len_bs*len),
         z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
@@ -131,7 +137,7 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "T", "M", "P", rep("", len_bs-4),"Read", rep("",len_bs-1)),
+                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
                 xaxs = FALSE, main=title, ylab="Throughput")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
@@ -139,7 +145,7 @@ for (k in 1:length(filter_op)){
 
         DF = data.frame(
         x = c(x_write_tmpfs_tp, x_write_fuse_tp),
-        y = rep(c("READ TMP", "READ"), each = len_bs*len),
+        y = rep(c("TP WRITE TMPFS", "TP WRITE FUSE"), each = len_bs*len),
         z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
         stringsAsFactors = FALSE
         )
@@ -153,7 +159,7 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "T", "M", "P", rep("", len_bs-4),"Write", rep("",len_bs-1)),
+                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
                 xaxs = FALSE, main=title, ylab="Throughput")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 

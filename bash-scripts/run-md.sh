@@ -63,7 +63,7 @@ for i in {1..10}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
-      run_file $i $j $k $l
+      run_file $i $j/$l $k/$l $l
       done
     done
   done
