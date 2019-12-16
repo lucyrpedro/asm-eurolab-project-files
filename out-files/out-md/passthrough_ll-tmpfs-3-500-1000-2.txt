@@ -1,0 +1,26 @@
+Args: ./md-workbench "-R=1" "-D=1" "-I=500" "-P=1000" "--" "-D" "/dev/shm/testfile"
+MD-Workbench total objects: 3000 workingset size: 7.441 MiB (version: 0a26b06@master) time: 2019-12-15 23:46:07
+	offset=1 
+	interface=posix
+	obj-per-proc=500 
+	latency=
+	precreate-per-set=1000 
+	data-sets=1 
+	lim-free-mem=0 
+	lim-free-mem-phase=0 
+	object-size=3901 
+	iterations=1 
+	waiting-time=0.000000 
+	stonewall-timer=0 
+	start-item=0
+	run-info-file=mdtest.status
+	run-precreate
+	run-benchmark
+	run-cleanup
+
+	root-dir=/dev/shm/testfile
+
+precreate process max:0.01s min:0.0s mean: 0.0s balance:97.8 stddev:0.0 rate:342175.3 iops/s dsets: 2 objects:2000 rate:341.833 dset/s rate:341833.4 obj/s tp:1271.7 MiB/s op-max:1.2465e-04s (0 errs) create(4.3770e-06s, 4.7680e-06s, 4.9785e-06s, 5.4490e-06s, 6.1530e-06s, 8.3210e-06s, 1.2465e-04s)
+benchmark process max:0.01s min:0.0s mean: 0.0s balance:93.8 stddev:0.0 rate:581457.6 iops/s objects:1000 rate:145364.4 obj/s tp:1081.6 MiB/s op-max:3.0002e-05s (0 errs) read(2.8740e-06s, 3.0780e-06s, 3.1665e-06s, 3.3340e-06s, 4.3300e-06s, 5.8470e-06s, 1.8559e-05s) stat(1.0420e-06s, 1.1980e-06s, 1.2450e-06s, 1.3260e-06s, 1.6880e-06s, 2.1550e-06s, 2.1253e-05s) create(4.1680e-06s, 4.3780e-06s, 4.5130e-06s, 4.7350e-06s, 6.7090e-06s, 8.9060e-06s, 3.0002e-05s) delete(2.2420e-06s, 2.4690e-06s, 2.5270e-06s, 2.6350e-06s, 3.2000e-06s, 4.4420e-06s, 1.6939e-05s)
+cleanup process max:0.00s min:0.0s mean: 0.0s balance:68.6 stddev:0.0 rate:485949.3 iops/s objects:2000 dsets: 2 rate:485463.9 obj/s rate:485.464 dset/s op-max:1.3544e-05s (0 errs) delete(1.9340e-06s, 2.4630e-06s, 3.1985e-06s, 3.5980e-06s, 3.9120e-06s, 6.5010e-06s, 1.3544e-05s)
+Total runtime: 0s time: 2019-12-15 23:46:07

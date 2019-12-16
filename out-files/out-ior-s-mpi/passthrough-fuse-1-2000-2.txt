@@ -1,0 +1,40 @@
+IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
+Began               : Sun Dec 15 23:44:48 2019
+Command line        : ./ior -t 2000 -b 2000 -w -r -s 50000/ -o mnt/dev/shm/testfile
+Machine             : Linux lucy-GS70-2PC-Stealth
+TestID              : 0
+StartTime           : Sun Dec 15 23:44:48 2019
+Path                : /home/lucy/esiwace/libfuse/build/mnt/dev/shm
+FS                  : 7.8 GiB   Used FS: 3.8%   Inodes: 1.9 Mi   Used Inodes: 0.1%
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : mnt/dev/shm/testfile
+access              : single-shared-file
+type                : independent
+segments            : 50000
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+tasks               : 2
+clients per node    : 2
+repetitions         : 1
+xfersize            : 2000 bytes
+blocksize           : 2000 bytes
+aggregate filesize  : 190.73 MiB
+
+Results: 
+
+access    bw(MiB/s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s) iter
+------    ---------  ---------- ---------  --------   --------   --------   -------- ----
+write     82.72      1.95       1.95       0.000102   2.31       0.184215   2.31       0   
+read      288.35     1.95       1.95       0.000102   0.661357   0.000022   0.661459   0   
+remove    -          -          -          -          -          -          0.039206   0   
+Max Write: 82.72 MiB/sec (86.74 MB/sec)
+Max Read:  288.35 MiB/sec (302.36 MB/sec)
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write          82.72      82.72      82.72       0.00   43368.72   43368.72   43368.72       0.00    2.30581         NA            NA     0      2   2    1   0     0        1         0    0  50000     2000     2000     190.7 POSIX      0
+read          288.35     288.35     288.35       0.00  151180.88  151180.88  151180.88       0.00    0.66146         NA            NA     0      2   2    1   0     0        1         0    0  50000     2000     2000     190.7 POSIX      0
+Finished            : Sun Dec 15 23:44:51 2019

@@ -1,11 +1,11 @@
 IOR-3.3.0+dev: MPI Coordinated Test of Parallel I/O
-Began               : Sun Dec 15 23:24:01 2019
+Began               : Sun Dec 15 23:44:12 2019
 Command line        : ./ior -t 262144 -b 1048576 -w -r -z -o /dev/shm/testfile
 Machine             : Linux lucy-GS70-2PC-Stealth
 TestID              : 0
-StartTime           : Sun Dec 15 23:24:01 2019
+StartTime           : Sun Dec 15 23:44:12 2019
 Path                : /dev/shm
-FS                  : 7.8 GiB   Used FS: 3.2%   Inodes: 1.9 Mi   Used Inodes: 0.1%
+FS                  : 7.8 GiB   Used FS: 3.8%   Inodes: 1.9 Mi   Used Inodes: 0.1%
 
 Options: 
 api                 : POSIX
@@ -27,14 +27,14 @@ Results:
 
 access    bw(MiB/s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s) iter
 ------    ---------  ---------- ---------  --------   --------   --------   -------- ----
-write     4398       1024.00    256.00     0.000013   0.000213   0.000001   0.000227   0   
-read      8847       1024.00    256.00     0.000003   0.000109   0.000001   0.000113   0   
-remove    -          -          -          -          -          -          0.000076   0   
-Max Write: 4397.69 MiB/sec (4611.31 MB/sec)
-Max Read:  8846.58 MiB/sec (9276.31 MB/sec)
+write     2614.48    1024.00    256.00     0.000016   0.000363   0.000003   0.000382   0   
+read      4194       1024.00    256.00     0.000004   0.000231   0.000003   0.000238   0   
+remove    -          -          -          -          -          -          0.000120   0   
+Max Write: 2614.48 MiB/sec (2741.48 MB/sec)
+Max Read:  4194.10 MiB/sec (4397.84 MB/sec)
 
 Summary of all tests:
 Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
-write        4397.69    4397.69    4397.69       0.00   17590.77   17590.77   17590.77       0.00    0.00023         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   262144       1.0 POSIX      0
-read         8846.58    8846.58    8846.58       0.00   35386.33   35386.33   35386.33       0.00    0.00011         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   262144       1.0 POSIX      0
-Finished            : Sun Dec 15 23:24:01 2019
+write        2614.48    2614.48    2614.48       0.00   10457.93   10457.93   10457.93       0.00    0.00038         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   262144       1.0 POSIX      0
+read         4194.10    4194.10    4194.10       0.00   16776.41   16776.41   16776.41       0.00    0.00024         NA            NA     0      1   1    1   0     0        1         0    0      1  1048576   262144       1.0 POSIX      0
+Finished            : Sun Dec 15 23:44:12 2019

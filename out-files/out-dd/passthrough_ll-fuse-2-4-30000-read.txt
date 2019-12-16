@@ -1,3 +1,3 @@
 7500+0 records in
 7500+0 records out
-30720000 bytes (31 MB, 29 MiB) copied, 0.0214611 s, 1.4 GB/s
+30720000 bytes (31 MB, 29 MiB) copied, 0.0207445 s, 1.5 GB/s

@@ -34,6 +34,7 @@ filter=$2
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
+fusermount -u mnt || /bin/true
 ./example/$filter mnt/
 mkdir -p out-ior-s
 

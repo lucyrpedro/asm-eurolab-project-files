@@ -1,3 +1,3 @@
 1875+0 records in
 1875+0 records out
-30720000 bytes (31 MB, 29 MiB) copied, 0.00867295 s, 3.5 GB/s
+30720000 bytes (31 MB, 29 MiB) copied, 0.00633868 s, 4.8 GB/s
