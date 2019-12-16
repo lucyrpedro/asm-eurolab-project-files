@@ -51,9 +51,10 @@ function run_file(){
 
 }
 
-size_vec=(2000 5000)
+# size_vec=(2000 5000)
+size_vec=(1048576 2097152 5242880 10485760)
 
-for i in {1..2}; do
+for i in {1..10}; do
   for j in "${size_vec[@]}"; do
       run_file $i $j $j
   done

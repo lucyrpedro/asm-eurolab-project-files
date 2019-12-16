@@ -34,6 +34,7 @@ echo 'xxxxxxxxxxxxxxxxxx'
 ./run-dd.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-dd.R out-dd
 
 cd out-dd
 
@@ -41,9 +42,14 @@ cd out-dd
 
 python3 parse-dd.py *.txt
 
+# Running the R script to generate the graphics
+
+./plot-dd.R
+
 # Saving results and intermediate files
 
 cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database
+cp -f figs-dd.pdf ../../../asm-eurolab-project-files/results-figures
 cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
@@ -83,6 +89,7 @@ cd ../libfuse/build/
 ./run-ior.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior.R out-ior
 
 cd out-ior
 
@@ -90,9 +97,14 @@ cd out-ior
 
 python3 parse-ior.py *.txt
 
+# Running the R script to generate the graphics
+
+./plot-ior.R
+
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database
+cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures
 cp -rf ../out-ior ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-r
@@ -113,6 +125,7 @@ cd ../
 ./run-ior-r.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior-r
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior.R out-ior-r
 
 cd out-ior-r
 
@@ -120,9 +133,14 @@ cd out-ior-r
 
 python3 parse-ior.py *.txt
 
+# Running the R script to generate the graphics
+
+./plot-ior.R
+
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-r.csv
+cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures/figs-ior-r.pdf
 cp -rf ../out-ior-r ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s
@@ -143,6 +161,7 @@ cd ../
 ./run-ior-s.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior.py out-ior-s
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior.R out-ior-s
 
 cd out-ior-s
 
@@ -150,9 +169,14 @@ cd out-ior-s
 
 python3 parse-ior.py *.txt
 
+# Running the R script to generate the graphics
+
+# ./plot-ior.R
+
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s.csv
+# cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures/figs-ior-s.pdf
 cp -rf ../out-ior-s ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s-mpi
@@ -173,6 +197,7 @@ cd ../
 ./run-ior-s-mpi.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior-s-mpi.R out-ior-s-mpi
 
 cd out-ior-s-mpi
 
@@ -180,9 +205,14 @@ cd out-ior-s-mpi
 
 python3 parse-ior-s-mpi.py *.txt
 
+# Running the R script to generate the graphics
+
+./plot-ior-s-mpi.R
+
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
+cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures/figs-ior-s-mpi.pdf
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
@@ -222,6 +252,7 @@ cd ../libfuse/build/
 ./run-md.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md
+cp -f ../../asm-eurolab-project-files/r-scripts/plot-md.R out-md
 
 cd out-md
 
@@ -229,9 +260,14 @@ cd out-md
 
 python3 parse-md.py *.txt
 
+# Running the R script to generate the graphics
+
+./plot-md.R
+
 # Saving results and intermediate files
 
 cp -f results-md.csv ../../../asm-eurolab-project-files/results-database
+cp -f figs-md.pdf ../../../asm-eurolab-project-files/results-figures
 cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files

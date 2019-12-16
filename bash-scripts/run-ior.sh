@@ -50,10 +50,13 @@ function run_file(){
 
 }
 
-blocksize_vec=(1048576 2097152)
-transfersize_vec=(262144 524288)
+# blocksize_vec=(1048576 2097152)
+# transfersize_vec=(262144 524288)
 
-for i in {1..2}; do
+blocksize_vec=(1048576 2097152 5242880 10485760)
+transfersize_vec=(262144 524288 1048576)
+
+for i in {1..10}; do
   for j in "${blocksize_vec[@]}"; do
     for k in "${transfersize_vec[@]}"; do
       run_file $i $j $k
