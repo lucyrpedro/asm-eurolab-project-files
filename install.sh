@@ -94,7 +94,6 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-ls
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi.csv
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
@@ -121,7 +120,7 @@ cd out-ior-s-mpi-r
 
 # Running the Python script to parse the results to a csv file
 
-python3 parse-ior-s-mpi-r.py *.txt
+python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
@@ -144,6 +143,7 @@ echo 'Running md'
 echo 'xxxxxxxxxxxxxxxxxx'
 
 cd ../../asm-eurolab-project-files
+ls
 cp -f bash-scripts/run-md.sh ../libfuse/build/
 cp -f benchmarks/md-workbench ../libfuse/build/
 
