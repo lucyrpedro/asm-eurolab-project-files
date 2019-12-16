@@ -26,12 +26,12 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-dd.sh tmpfs passthrough
-./run-dd.sh fuse passthrough
-./run-dd.sh tmpfs passthrough_ll
-./run-dd.sh fuse passthrough_ll
-./run-dd.sh tmpfs passthrough_fh
-./run-dd.sh fuse passthrough_fh
+# ./run-dd.sh tmpfs passthrough
+# ./run-dd.sh fuse passthrough
+# ./run-dd.sh tmpfs passthrough_ll
+# ./run-dd.sh fuse passthrough_ll
+# ./run-dd.sh tmpfs passthrough_fh
+# ./run-dd.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
 
