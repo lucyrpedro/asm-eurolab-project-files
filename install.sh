@@ -107,12 +107,12 @@ cd ../
 
 # Running the filters with a Bash script
 
-./run-ior-s-mpi.sh tmpfs passthrough
-# ./run-ior-s-mpi.sh fuse passthrough
-# ./run-ior-s-mpi.sh tmpfs passthrough_ll
-# ./run-ior-s-mpi.sh fuse passthrough_ll
-# ./run-ior-s-mpi.sh tmpfs passthrough_fh
-# ./run-ior-s-mpi.sh fuse passthrough_fh
+./run-ior-s-mpi-r.sh tmpfs passthrough
+# ./run-ior-s-mpi-r.sh fuse passthrough
+# ./run-ior-s-mpi-r.sh tmpfs passthrough_ll
+# ./run-ior-s-mpi-r.sh fuse passthrough_ll
+# ./run-ior-s-mpi-r.sh tmpfs passthrough_fh
+# ./run-ior-s-mpi-r.sh fuse passthrough_fh
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r
 
