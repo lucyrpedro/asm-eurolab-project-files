@@ -76,8 +76,6 @@ echo 'xxxxxxxxxxxxxxxxxx'
 echo 'Running ior-segments-mpi'
 echo 'xxxxxxxxxxxxxxxxxx'
 
-cd ../
-
 # Running the filters with a Bash script
 
 ./run-ior-s-mpi.sh tmpfs passthrough
