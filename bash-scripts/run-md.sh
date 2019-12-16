@@ -59,7 +59,7 @@ psize_vec=(1000)
 # isize_vec=(200000 500000 1000000)
 # psize_vec=(1000000 3000000 5000000 10000000)
 
-for i in {1..5}; do
+for i in {1..2}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
