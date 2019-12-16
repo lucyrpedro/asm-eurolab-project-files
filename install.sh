@@ -152,13 +152,13 @@ cd ../libfuse/build/
 # Running the filters with a Bash script
 
 ./run-md.sh tmpfs passthrough
-./run-md.sh fuse passthrough
-./run-md.sh tmpfs passthrough_ll
-./run-md.sh fuse passthrough_ll
-./run-md.sh tmpfs passthrough_fh
-./run-md.sh fuse passthrough_fh
+# ./run-md.sh fuse passthrough
+# ./run-md.sh tmpfs passthrough_ll
+# ./run-md.sh fuse passthrough_ll
+# ./run-md.sh tmpfs passthrough_fh
+# ./run-md.sh fuse passthrough_fh
 
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
 
 cd out-md
 

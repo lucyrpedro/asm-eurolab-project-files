@@ -36,8 +36,6 @@ rm -rf out
 mkdir -p mnt
 fusermount -u mnt || /bin/true
 ./example/$filter mnt/
-echo 'CREATING DIR'
-ls
 mkdir -p out-ior-s-mpi-r
 
 function run_file(){
