@@ -1,3 +1,0 @@
-234+0 records in
-234+0 records out
-30670848 bytes (31 MB, 29 MiB) copied, 0.0199851 s, 1.5 GB/s
