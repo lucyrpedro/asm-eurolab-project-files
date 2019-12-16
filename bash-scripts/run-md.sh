@@ -36,7 +36,10 @@ rm -rf out
 mkdir -p mnt
 fusermount -u mnt || /bin/true
 ./example/$filter mnt/
+echo 'CREATING DIR'
+ls
 mkdir -p out-md
+ls
 
 function run_file(){
   run=$1
