@@ -33,24 +33,24 @@ echo 'xxxxxxxxxxxxxxxxxx'
 # ./run-dd.sh tmpfs passthrough_fh
 # ./run-dd.sh fuse passthrough_fh
 
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
-
-cd out-dd
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+#
+# cd out-dd
 
 # Running the Python script to parse the results to a csv file
 
-python3 parse-dd.py *.txt
+# python3 parse-dd.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database
-cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
+# cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database
+# cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
 
-cd ..
-rm -rf out-dd
-rm run-dd.sh
+# cd ..
+# rm -rf out-dd
+# rm run-dd.sh
 
 ##### Install ior and then copy the executable!!!
 
