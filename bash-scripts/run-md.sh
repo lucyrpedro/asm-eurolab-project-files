@@ -36,10 +36,7 @@ rm -rf out
 mkdir -p mnt
 fusermount -u mnt || /bin/true
 ./example/$filter mnt/
-echo 'CREATING DIR'
-ls
 mkdir -p out-md
-ls
 
 function run_file(){
   run=$1
@@ -47,20 +44,23 @@ function run_file(){
   psize=$3
   nproc=$4
 
+  isizeproc=$(($j/$l))
+  psizeproc=$(($k/$l))
+
   file=out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-  then mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isize} -P=${psize} -- -D ${test_dir} > out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
+  then mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} > out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
   fi
 
 }
 
-# nproc_vec=(1 2)
-# isize_vec=(200 500)
-# psize_vec=(1000)
+nproc_vec=(1 2)
+isize_vec=(200 500)
+psize_vec=(1000)
 
-nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-isize_vec=(200000 500000 1000000)
-psize_vec=(1000000 3000000 5000000 10000000)
+# nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+# isize_vec=(200000 500000 1000000)
+# psize_vec=(1000000 3000000 5000000 10000000)
 
 for i in {1..10}; do
   for j in "${isize_vec[@]}"; do

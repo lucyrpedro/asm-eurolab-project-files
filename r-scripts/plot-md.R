@@ -19,9 +19,13 @@ pdf("figs-md.pdf") # either save all files in one pdf or the files in specific p
 
 d = read.csv("results-md.csv")
 
-isize_op = c(200, 500)
-psize_op = c(1000)
-nproc_op = c(1, 2)
+# isize_op = c(200, 500)
+# psize_op = c(1000)
+# nproc_op = c(1, 2)
+
+nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+isize_op = c(200000, 500000, 1000000)
+psize_op = c(1000000, 3000000, 5000000, 10000000)
 
 legend_vet = numeric(0);
 
