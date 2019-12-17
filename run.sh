@@ -15,8 +15,9 @@ fi
 
 ## Creating the Output Directories ###
 
-mkdir -p results-database
+mkdir -p results-database/
 mkdir -p results-figures/
+
 ## Running DD ###
 
 ## DD needs to be update to run the last filter, passthrough_hp

@@ -13,6 +13,11 @@ then
   rm -f ../libfuse/build/*.R
 fi
 
+## Creating the Output Directories ###
+
+mkdir -p results-database/
+mkdir -p results-figures/
+
 ## Running DD ###
 
 cp -f bash-scripts/run-dd.sh ../libfuse/build/
@@ -39,7 +44,7 @@ python3 parse-dd.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-dd.csv ../../../asm-eurolab-project-files
+cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
 cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
@@ -88,7 +93,7 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi.csv
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s-mpi
@@ -97,28 +102,28 @@ cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 # echo 'Running ior-segments-mpi-random'
 # echo 'xxxxxxxxxxxxxxxxxx'
 #
-# cd ../
-#
-# # Running the filters with a Bash script
-#
-# ./run-ior-s-mpi-r.sh tmpfs fusexmp
-# ./run-ior-s-mpi-r.sh fuse fusexmp
-# ./run-ior-s-mpi-r.sh tmpfs fusexmp_fh
-# ./run-ior-s-mpi-r.sh fuse fusexmp_fh
-#
-# cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
-#
-# cd out-ior-s-mpi-r
-#
-# # Running the Python script to parse the results to a csv file
-#
-# python3 parse-ior-s-mpi.py *.txt
-#
-# # Saving results and intermediate files
-#
-# cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi-r.csv
-# cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
-#
+cd ../
+
+# Running the filters with a Bash script
+
+./run-ior-s-mpi-r.sh tmpfs fusexmp
+./run-ior-s-mpi-r.sh fuse fusexmp
+./run-ior-s-mpi-r.sh tmpfs fusexmp_fh
+./run-ior-s-mpi-r.sh fuse fusexmp_fh
+
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
+
+cd out-ior-s-mpi-r
+
+# Running the Python script to parse the results to a csv file
+
+python3 parse-ior-s-mpi.py *.txt
+
+# Saving results and intermediate files
+
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
+
 # Cleaning the files
 
 cd ..
@@ -157,7 +162,7 @@ python3 parse-md.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-md.csv ../../../asm-eurolab-project-files/
+cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
 cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
 
 # Cleaning the files
