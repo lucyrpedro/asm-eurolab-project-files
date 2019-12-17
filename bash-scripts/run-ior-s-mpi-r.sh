@@ -5,7 +5,7 @@
 # Options: Parameter $1
 
 # tmpfs (/dev/shm/)
-# fuse (mnt/dev/shm/)
+# fuse (mnt-fuse/dev/shm/)
 
 # Options: Parameter $2
 
@@ -26,7 +26,7 @@ then test_dir=/dev/shm/testfile
 fi
 
 if [ $dir == 'fuse' ]
-then test_dir=mnt/dev/shm/testfile
+then test_dir=mnt-fuse/dev/shm/testfile
 fi
 
 filter=$2
@@ -35,16 +35,16 @@ rm -rf /dev/shm/testfile
 rm -rf out
 rm -rf out-ior-s-mpi-r # This option is inconsistent with the file check during the runs
 mkdir -p out-ior-s-mpi-r
-mkdir -p mnt
+mkdir -p mnt-fuse
 
-mount="mnt"
+mount="mnt-fuse"
 
 if grep -qs "$mount" /proc/mounts; then
   echo "The system was not supposed to be mounted! Unmounting and mounting again!"
-  fusermount -u mnt
-  ./example/$filter mnt/
+  fusermount -u mnt-fuse
+  ./example/$filter mnt-fuse/
 else
-  ./example/$filter mnt/
+  ./example/$filter mnt-fuse/
 fi
 
 function run_file(){
@@ -82,5 +82,5 @@ for i in {1..1}; do
 done
 
 if grep -qs "$mount" /proc/mounts; then
-  fusermount -u mnt
+  fusermount -u mnt-fuse
 fi

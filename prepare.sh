@@ -12,12 +12,12 @@ cd ../../
 
 ## Installing ior ###
 
-wget https://github.com/hpc/ior/releases/download/3.2.1/ior-3.2.1.tar.gz
-tar xvzf ior-3.2.1.tar.gz
-cd ior-3.2.1
-./configure
-make
-cd ../
+# wget https://github.com/hpc/ior/releases/download/3.2.1/ior-3.2.1.tar.gz
+# tar xvzf ior-3.2.1.tar.gz
+# cd ior-3.2.1
+# ./configure
+# make
+# cd ../
 
 ## Installing md-workbench ### (It doesn't work in the server yet!)
 
