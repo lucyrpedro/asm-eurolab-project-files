@@ -34,9 +34,17 @@ filter=$2
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
-fusermount -u mnt || /bin/true
-./example/$filter mnt/
-mkdir -p out-ior-s-mpi-r
+mkdir -p out-dd
+
+mount="mnt"
+
+if grep -qs "$mount" /proc/mounts; then
+  echo "The system was not supposed to be mounted! Unmounting and mounting again!"
+  fusermount -u mnt
+  ./example/$filter mnt/
+else
+  ./example/$filter mnt/
+fi
 
 function run_file(){
   run=$1
@@ -44,12 +52,11 @@ function run_file(){
   nproc=$3
   filesize=$4
 
-  div=$((1024*1024*${size}*${nproc}))
-  segments=$((${filesize}/${div}))
+  segments=$(( ${filesize}/((${size}/1024/1024)*${nproc}) ))
 
-  file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
+  file=out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-   then mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+   then echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }
@@ -68,4 +75,6 @@ for i in {1..10}; do
   done
 done
 
-fusermount -u mnt
+if grep -qs "$mount" /proc/mounts; then
+  fusermount -u mnt
+fi

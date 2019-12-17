@@ -34,9 +34,17 @@ filter=$2
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p mnt
-fusermount -u mnt || /bin/true
-./example/$filter mnt/
-mkdir -p out-md
+mkdir -p out-dd
+
+mount="mnt"
+
+if grep -qs "$mount" /proc/mounts; then
+  echo "The system was not supposed to be mounted! Unmounting and mounting again!"
+  fusermount -u mnt
+  ./example/$filter mnt/
+else
+  ./example/$filter mnt/
+fi
 
 function run_file(){
   run=$1
@@ -74,4 +82,6 @@ for i in {1..10}; do
   done
 done
 
-fusermount -u mnt
+if grep -qs "$mount" /proc/mounts; then
+  fusermount -u mnt
+fi

@@ -13,6 +13,10 @@ then
   rm -f ../libfuse/build/*.R
 fi
 
+## Creating the Output Directories ###
+
+mkdir -p results-database
+mkdir -p results-figures/
 ## Running DD ###
 
 ## DD needs to be update to run the last filter, passthrough_hp
@@ -94,7 +98,7 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi.csv
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
 cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 
 ## Running IOR-s-mpi
