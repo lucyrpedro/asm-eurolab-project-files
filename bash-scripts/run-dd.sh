@@ -87,19 +87,19 @@ function run_file(){
   fi
 }
 
-# blocksize_vec=(4 16 100 128 1000)
-# filesize_vec=(30000)
+blocksize_vec=(4 16 100 128 1000)
+filesize_vec=(30000)
 
 # blocksize_vec=(4 16 100 128 1000 1024 8192 10000)
 # filesize_vec=(10000 100000 1000000)
 
-blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-filesize_vec=(1048576 10485760000)
+# blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
+# filesize_vec=(1048576 10485760000)
 
 #blocksize="4 16 100"
 # for j in $blocksize ; do
 
-for i in {1..30}; do      # 10
+for i in {1..3}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
     for k in "${filesize_vec[@]}"; do   # 2
       run_file $i $j $k

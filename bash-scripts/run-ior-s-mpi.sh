@@ -64,16 +64,16 @@ function run_file(){
 
 }
 
-# nproc_vec=(1)
-# size_vec=(1048576)
+nproc_vec=(1)
+size_vec=(1048576)
 
 # nproc_vec=(1 2)
 # size_vec=(2000 5000)
 #
-nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-size_vec=(1048576 2097152 5242880 10485760)
+# nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+# size_vec=(1048576 2097152 5242880 10485760)
 
-for i in {1..30}; do
+for i in {1..3}; do
   for j in "${size_vec[@]}"; do
     for k in "${nproc_vec[@]}"; do
       run_file $i $j $k 50000
