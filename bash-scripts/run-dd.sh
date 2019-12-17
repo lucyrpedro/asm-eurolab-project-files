@@ -52,8 +52,9 @@ filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
-mkdir -p mnt
+rm -rf out-dd # This option is inconsistent with the file check during the runs
 mkdir -p out-dd
+mkdir -p mnt
 
 mount="mnt"
 
@@ -74,11 +75,15 @@ function run_file(){
 
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-  then echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
+  then
+    echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
+    dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
   fi
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt
   if [[ ! -e $file ]]
-  then echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
+  then
+    echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
+    dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
   fi
 }
 
@@ -94,7 +99,7 @@ filesize_vec=(1048576 10485760000)
 #blocksize="4 16 100"
 # for j in $blocksize ; do
 
-for i in {1..10}; do      # 10
+for i in {1..30}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
     for k in "${filesize_vec[@]}"; do   # 2
       run_file $i $j $k

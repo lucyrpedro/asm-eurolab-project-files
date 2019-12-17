@@ -19,11 +19,11 @@ cd ior-3.2.1
 make
 cd ../
 
-## Installing md-workbench ###
+## Installing md-workbench ### (It doesn't work in the server yet!)
 
-git clone https://github.com/JulianKunkel/md-workbench.git
-cd md-workbench
-./configure
-cd build
-make
-cd ../../
+# git clone https://github.com/JulianKunkel/md-workbench.git
+# cd md-workbench
+# ./configure
+# cd build
+# make
+# cd ../../
