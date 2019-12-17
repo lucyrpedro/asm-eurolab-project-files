@@ -44,8 +44,8 @@ function run_file(){
   psize=$3
   nproc=$4
 
-  isizeproc=$(($j/$l))
-  psizeproc=$(($k/$l))
+  isizeproc=$(($2/$4))
+  psizeproc=$(($3/$4))
 
   file=out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
@@ -66,7 +66,7 @@ for i in {1..10}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
-      run_file $i $(($j/$l)) $(($k/$l)) $l
+      run_file $i $j $k $l
       done
     done
   done
