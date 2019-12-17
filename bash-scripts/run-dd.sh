@@ -99,7 +99,7 @@ filesize_vec=(30000)
 #blocksize="4 16 100"
 # for j in $blocksize ; do
 
-for i in {1..3}; do      # 10
+for i in {1..1}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
     for k in "${filesize_vec[@]}"; do   # 2
       run_file $i $j $k

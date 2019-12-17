@@ -37,7 +37,7 @@ echo 'xxxxxxxxxxxxxxxxxx'
 ./run-dd.sh tmpfs passthrough_fh
 ./run-dd.sh fuse passthrough_fh
 
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
 
 cd out-dd
 
@@ -47,8 +47,8 @@ python3 parse-dd.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-dd.csv ../../../asm-eurolab-project-files
-cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
+cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
@@ -88,7 +88,7 @@ echo 'xxxxxxxxxxxxxxxxxx'
 ./run-ior-s-mpi.sh tmpfs passthrough_fh
 ./run-ior-s-mpi.sh fuse passthrough_fh
 
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi/
 
 cd out-ior-s-mpi
 
@@ -99,7 +99,7 @@ python3 parse-ior-s-mpi.py *.txt
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
-cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
+cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi
 
@@ -128,8 +128,8 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-ior-s-mpi-r.csv
-cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
+cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
@@ -171,8 +171,8 @@ python3 parse-md.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-md.csv ../../../asm-eurolab-project-files/
-cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
+cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-md ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
