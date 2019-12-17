@@ -44,14 +44,11 @@ function run_file(){
   nproc=$3
   filesize=$4
 
-  div=$((1024*1024*${size}*${nproc}))
-  segments=$((${filesize}/${div}))
-
-  sizeproc=$(($2/$3))
+  segments=$(( ${filesize}/((${size}/1024/1024)*${nproc}) ))
 
   file=out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-   then mpiexec -n ${nproc} ./ior -t ${size} -b ${sizeproc} -w -r -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+   then echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }

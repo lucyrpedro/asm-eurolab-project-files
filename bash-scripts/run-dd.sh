@@ -66,11 +66,11 @@ function run_file(){
 
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
-  then dd if=/dev/zero of=${test_dir} bs=${blocksize}k count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
+  then echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
   fi
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt
   if [[ ! -e $file ]]
-  then dd of=/dev/null if=${test_dir} bs=${blocksize}k count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
+  then echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
   fi
 }
 
@@ -81,7 +81,7 @@ function run_file(){
 # filesize_vec=(10000 100000 1000000)
 
 blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-filesize_vec=(1000000 1048576)
+filesize_vec=(1048576 10485760000)
 
 #blocksize="4 16 100"
 # for j in $blocksize ; do
