@@ -2,6 +2,7 @@
 
 ## Installing libfuse ###
 
+cd ..
 git clone git@github.com:libfuse/libfuse.git
 cd libfuse
 mkdir build
