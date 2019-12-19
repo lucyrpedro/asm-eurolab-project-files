@@ -51,7 +51,7 @@ if [ $3 == 'test' ]
 then
   nproc_vec=(1)
   size_vec=(1048576)
-  file=50000
+  file-size=50000
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
   size_vec=(1048576 2097152 5242880 10485760)
@@ -69,8 +69,8 @@ function run_file(){
   file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
    then
-     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
-     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -s ${segments} -o ${test_dir} >> out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} >> out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }
