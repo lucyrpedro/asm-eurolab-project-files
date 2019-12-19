@@ -121,10 +121,10 @@ then
 
   # Cleaning the files
 
-  # cd ..
-  # rm -rf out-ior-s-mpi-r
-  # rm run-ior-s-mpi.sh
-  # rm ior
+  cd ..
+  rm -rf out-ior-s-mpi-r
+  rm run-ior-s-mpi.sh
+  rm ior
 
   ## Running MD ###
 
