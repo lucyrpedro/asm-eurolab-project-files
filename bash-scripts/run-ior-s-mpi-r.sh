@@ -47,6 +47,17 @@ else
   ./example/$filter mnt-fuse/
 fi
 
+if [ $3 == 'test' ]
+then
+  nproc_vec=(1 2)
+  size_vec=(2000 5000)
+  file=50
+else
+  nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+  size_vec=(1048576 2097152 5242880 10485760)
+  file=50000
+fi
+
 function run_file(){
   run=$1
   size=$2
@@ -63,16 +74,6 @@ function run_file(){
   fi
 
 }
-
-# nproc_vec=(1 2)
-# size_vec=(2000 5000)
-
-# nproc_vec=(1)
-# size_vec=(1048576)
-
-nproc_vec=(1 5 8 12 16)
-# nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-size_vec=(1048576 2097152 5242880 10485760)
 
 for i in {1..1}; do
   for j in "${size_vec[@]}"; do
