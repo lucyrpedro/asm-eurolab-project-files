@@ -4,9 +4,9 @@
 
 if [ $1 == 'clean' ]
 then
-  rm -rf results-database/*
-  rm -rf results-figures/*
-  rm -rf out-files/*
+  rm -rf results-database
+  rm -rf results-figures
+  rm -rf out-files
   rm -rf ../libfuse/build/out*
   rm -f ../libfuse/build/*.sh
   rm -f ../libfuse/build/*.py
@@ -17,41 +17,42 @@ fi
 
 mkdir -p results-database/
 mkdir -p results-figures/
+mkdir -p out-files/
 
 ## Running DD ###
 
 cp -f bash-scripts/run-dd.sh ../libfuse/build/
 cd ../libfuse/build/
 
-# echo 'xxxxxxxxxxxxxxxxxx'
-# echo 'Running dd'
-# echo 'xxxxxxxxxxxxxxxxxx'
-#
-# # Running the filters with a Bash script
-#
-# ./run-dd.sh tmpfs fusexmp
-# ./run-dd.sh fuse fusexmp
-# ./run-dd.sh tmpfs fusexmp_fh
-# ./run-dd.sh fuse fusexmp_fh
-#
-# cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
-#
-# cd out-dd
-#
-# # Running the Python script to parse the results to a csv file
-#
-# python3 parse-dd.py *.txt
-#
-# # Saving results and intermediate files
-#
-# cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-# cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
-#
-# # Cleaning the files
-#
-# cd ..
-# rm -rf out-dd
-# rm run-dd.sh
+echo 'xxxxxxxxxxxxxxxxxx'
+echo 'Running dd'
+echo 'xxxxxxxxxxxxxxxxxx'
+
+# Running the filters with a Bash script
+
+./run-dd.sh tmpfs fusexmp
+./run-dd.sh fuse fusexmp
+./run-dd.sh tmpfs fusexmp_fh
+./run-dd.sh fuse fusexmp_fh
+
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+
+cd out-dd
+
+# Running the Python script to parse the results to a csv file
+
+python3 parse-dd.py *.txt
+
+# Saving results and intermediate files
+
+cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
+
+# Cleaning the files
+
+cd ..
+rm -rf out-dd
+rm run-dd.sh
 
 ##### Install ior and then copy the executable!!!
 
@@ -94,14 +95,14 @@ python3 parse-ior-s-mpi.py *.txt
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
-cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
+cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi
 
-# echo 'xxxxxxxxxxxxxxxxxx'
-# echo 'Running ior-segments-mpi-random'
-# echo 'xxxxxxxxxxxxxxxxxx'
-#
+echo 'xxxxxxxxxxxxxxxxxx'
+echo 'Running ior-segments-mpi-random'
+echo 'xxxxxxxxxxxxxxxxxx'
+
 cd ../
 
 # Running the filters with a Bash script
@@ -122,7 +123,7 @@ python3 parse-ior-s-mpi.py *.txt
 # Saving results and intermediate files
 
 cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
-cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
+cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
@@ -163,7 +164,7 @@ python3 parse-md.py *.txt
 # Saving results and intermediate files
 
 cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
+cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
