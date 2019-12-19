@@ -53,7 +53,7 @@ then
   # Cleaning the files
 
   cd ..
-  rm -rf out-dd
+  # rm -rf out-dd
   rm run-dd.sh
 
   echo 'xxxxxxxxxxxxxxxxxx'
@@ -120,8 +120,8 @@ then
   # Cleaning the files
 
   cd ..
-  rm -rf out-ior-s-mpi
-  rm -rf out-ior-s-mpi-r
+  # rm -rf out-ior-s-mpi
+  # rm -rf out-ior-s-mpi-r
   rm run-ior-s-mpi.sh
   rm run-ior-s-mpi-r.sh
   rm ior
@@ -159,7 +159,7 @@ then
   # Cleaning the files
 
   cd ..
-  rm -rf out-md
+  # rm -rf out-md
   rm run-md.sh
   rm md-workbench
 #
