@@ -103,7 +103,7 @@ then
   ./run-ior-s-mpi-r.sh tmpfs passthrough $2
   ./run-ior-s-mpi-r.sh fuse passthrough $2
 
-  cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
+  cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r/
 
   cd out-ior-s-mpi-r
 
