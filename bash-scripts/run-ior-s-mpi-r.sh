@@ -49,13 +49,15 @@ fi
 
 if [ $3 == 'test' ]
 then
-  nproc_vec=(1)
-  size_vec=(1048576)
-  file_size=50000
+  nproc_vec=(1 2)
+  size_vec=(200 600)
+  file_size=(5000)
+  conv=(1)
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
   size_vec=(1048576 2097152 5242880 10485760)
   file_size=50000
+  conv=(1024)
 fi
 
 function run_file(){
@@ -63,8 +65,9 @@ function run_file(){
   size=$2
   nproc=$3
   filesize=$4
+  conv_aux=$5
 
-  segments=$(( ${filesize}/((${size}/1024/1024)*${nproc}) ))
+  segments=$(( ${filesize}/((${size}/${conv_aux}/${conv_aux})*${nproc}) ))
 
   file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
@@ -78,7 +81,7 @@ function run_file(){
 for i in {1..1}; do
   for j in "${size_vec[@]}"; do
     for k in "${nproc_vec[@]}"; do
-      run_file $i $j $k $file_size
+      run_file $i $j $k $file_size $conv
     done
   done
 done

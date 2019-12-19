@@ -50,7 +50,7 @@ fi
 if [ $3 == 'test' ]
 then
   nproc_vec=(1 2)
-  size_vec=(200 500)
+  size_vec=(200 600)
   file_size=(5000)
   conv=(1)
 else
