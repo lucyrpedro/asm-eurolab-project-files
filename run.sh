@@ -49,7 +49,7 @@ then
   # Saving results and intermediate files
 
   cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-  cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files/
+  cp -r ../out-dd/ ../../../asm-eurolab-project-files/out-files/
 
   # Cleaning the files
 
