@@ -2,9 +2,8 @@
 
 # Options for the input parameters
 
-# filter_op     passthrough passthrough_fh passthrough_hp passthrough_ll
-# blocksize_op  100 128 1000 1024 8192 10000
-# size_op       10000 100000 1000000
+# 0   test parameters
+# 1   real parameters
 
 # Options for the output parameters
 
@@ -13,20 +12,22 @@
 
 # ########################################################
 
+args = commandArgs(trailingOnly=TRUE)
+
 pdf("figs-dd.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
 
 d = read.csv("results-dd.csv")
 
-# blocksize_op = c(4, 16, 100, 128, 1000);
-# size_op = c(30000);
-
-# blocksize_op = c(4, 16, 100, 128, 1000, 8192, 10000)
-# size_op = c(10000, 100000, 1000000)
-
-blocksize_op = c(10000, 16384, 100000, 131072, 1000000, 1048576)
-filesize_op = c(1000000, 1048576)
-
-filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
+if(args[1] == 0){
+  blocksize_op  = c(4, 16, 100, 128, 1000)
+  size_op       = c(30000)
+  filter_op     = c("passthrough")
+} else
+{
+  blocksize_op  = c(10000, 16384, 100000, 131072, 1000000, 1048576)
+  filesize_op   = c(1000000, 1048576)
+  filter_op     = c("passthrough", "passthrough_ll", "passthrough_fh")
+}
 
 for (k in 1:length(filter_op)){
 
