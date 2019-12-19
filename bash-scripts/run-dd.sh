@@ -90,13 +90,13 @@ function run_file(){
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
   then
-    # echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks
+    echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
     dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
   fi
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt
   if [[ ! -e $file ]]
   then
-    # echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks
+    echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
     dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
   fi
 }
