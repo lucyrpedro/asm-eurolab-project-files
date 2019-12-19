@@ -9,7 +9,7 @@ import csv
 
 # Create the output filename
 
-filename = "results-ior.csv"
+filename = "results-ior-s-mpi.csv"
 
 # Open the output file
 

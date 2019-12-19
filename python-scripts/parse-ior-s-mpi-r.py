@@ -9,12 +9,12 @@ import csv
 
 # Create the output filename
 
-filename = "results-ior.csv"
+filename = "results-ior-s-mpi-r.csv"
 
 # Open the output file
 
 fd = open(filename, "w")
-fields = ["file", "bytes", "MB", "MiB", "time", "tp", "filter", "dir_mem", "iter", "blocksize", "transfersize", "size", "operation", "options", "read_time", "write_time", "read_tp", "write_tp", "prefix", "n", "ppn", "config", "timesteps", "sync_t"]
+fields = ["file", "bytes", "MB", "MiB", "time", "tp", "filter", "dir_mem", "iter", "blocksize", "transfersize", "size", "operation", "options", "read_time", "write_time", "read_tp", "write_tp", "prefix", "n", "ppn", "config", "timesteps", "sync_t", "nproc", "size"]
 out = csv.DictWriter(fd, fieldnames=fields, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 out.writeheader()
 
@@ -58,7 +58,7 @@ for file in files:
 
     # Parse the data for the information inside the filename
 
-    n = re.match("(?P<filter>[a-z\_]*)-(?P<dir_mem>[a-z]*)-(?P<iter>[0-9]*)-(?P<blocksize>[0-9]*)-(?P<transfersize>[0-9]*).txt", file)
+    n = re.match("(?P<filter>[a-z\_]*)-(?P<dir_mem>[a-z]*)-(?P<iter>[0-9]*)-(?P<size>[0-9]*)-(?P<nproc>[0-9]*).txt", file)
 
     if n:
         data_M.update(n.groupdict())
@@ -101,7 +101,7 @@ for file in files:
 
     # Parse the data for the information inside the filename
 
-    n = re.match("(?P<filter>[a-z\_]*)-(?P<dir_mem>[a-z]*)-(?P<iter>[0-9]*)-(?P<blocksize>[0-9]*)-(?P<transfersize>[0-9]*).txt", file)
+    n = re.match("(?P<filter>[a-z\_]*)-(?P<dir_mem>[a-z]*)-(?P<iter>[0-9]*)-(?P<size>[0-9]*)-(?P<nproc>[0-9]*).txt", file)
 
     if n:
         data_M.update(n.groupdict())
