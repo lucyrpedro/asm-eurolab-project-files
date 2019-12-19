@@ -69,11 +69,12 @@ function run_file(){
 # isize_vec=(200 500)
 # psize_vec=(1000)
 
-nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+# nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+nproc_vec=(1 5 8 12 16)
 isize_vec=(200000 500000 1000000)
 psize_vec=(1000000 3000000 5000000 10000000)
 
-for i in {1..30}; do
+for i in {1..1}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
