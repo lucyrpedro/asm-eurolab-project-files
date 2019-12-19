@@ -20,7 +20,7 @@ cp /home/pedro/md-workbench/build/src/md-workbench asm-eurolab-project-files/ben
 
 if [ $1 == 'test' ]
 then
-  ./run.sh clean $1
+  ./run-server.sh clean $1
 else
-  ./run.sh clean none
+  ./run-server.sh clean none
 fi
