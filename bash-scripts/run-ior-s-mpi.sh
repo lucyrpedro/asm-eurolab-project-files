@@ -51,7 +51,7 @@ if [ $3 == 'test' ]
 then
   nproc_vec=(1)
   size_vec=(1048576)
-  file=50000
+  file-size=50000
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
   size_vec=(1048576 2097152 5242880 10485760)
@@ -78,7 +78,7 @@ function run_file(){
 for i in {1..1}; do
   for j in "${size_vec[@]}"; do
     for k in "${nproc_vec[@]}"; do
-      run_file $i $j $k $file
+      run_file $i $j $k $file-size
     done
   done
 done
