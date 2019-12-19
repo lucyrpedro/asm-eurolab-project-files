@@ -58,7 +58,9 @@ filter=$2
 rm -rf /dev/shm/testfile
 rm -rf out
 rm -rf out-dd # This option is inconsistent with the file check during the runs
+ls
 mkdir -p out-dd
+ls
 mkdir -p mnt-fuse
 
 mount="mnt-fuse"
@@ -71,6 +73,15 @@ else
   ./example/$filter mnt-fuse/
 fi
 
+if [ $3 == 'test' ]
+then
+  blocksize_vec=(4 16 100 128 1000)
+  filesize_vec=(30000)
+else
+  blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
+  filesize_vec=(1048576 10485760000)
+fi
+
 function run_file(){
   run=$1
   blocksize=$2
@@ -81,28 +92,16 @@ function run_file(){
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
   then
-    echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
+    # echo dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks
     dd if=/dev/zero of=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-write.txt 2>&1
   fi
   file=out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt
   if [[ ! -e $file ]]
   then
-    echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks > out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
+    # echo dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks
     dd of=/dev/null if=${test_dir} bs=${blocksize} count=$blocks >> out-dd/${filter}-${dir}-${run}-${blocksize}-${filesize}-read.txt 2>&1
   fi
 }
-
-if [ $3 == 'test' ]
-then
-  blocksize_vec=(4 16 100 128 1000)
-  filesize_vec=(30000)
-else
-  blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-  filesize_vec=(1048576 10485760000)
-end
-
-#blocksize="4 16 100"
-# for j in $blocksize ; do
 
 for i in {1..1}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
@@ -112,6 +111,9 @@ for i in {1..1}; do      # 10
   done
 done
 
-if grep -qs "$mount" /proc/mounts; then
+if grep -qs "$mount" /proc/mounts
+then
   fusermount -u mnt-fuse
+else
+  echo "The system was supposed to be mounted!"
 fi
