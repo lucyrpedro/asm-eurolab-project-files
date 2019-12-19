@@ -33,7 +33,6 @@ filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
-rm -rf out-md # This option is inconsistent with the file check during the runs
 mkdir -p out-md
 mkdir -p mnt-fuse
 

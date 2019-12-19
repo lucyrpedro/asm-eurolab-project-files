@@ -4,9 +4,9 @@
 
 if [ $1 == 'clean' ]
 then
-  rm -rf results-database/*
-  rm -rf results-figures/*
-  rm -rf out-files/*
+  rm -rf results-database
+  rm -rf results-figures
+  rm -rf out-files
   rm -rf ../libfuse/build/out*
   rm -f ../libfuse/build/*.sh
   rm -f ../libfuse/build/*.py
@@ -15,7 +15,7 @@ fi
 
 if [ $2 == 'test' ]
 then
-  ## Creating the Output Directories ###
+  ## Creating the output directories ###
 
   mkdir -p results-database/
   mkdir -p results-figures/

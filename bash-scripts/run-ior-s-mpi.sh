@@ -33,7 +33,6 @@ filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
-rm -rf out-ior-s-mpi # This option is inconsistent with the file check during the runs
 mkdir -p out-ior-s-mpi
 mkdir -p mnt-fuse
 

@@ -57,7 +57,6 @@ filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
-rm -rf out-dd # This option is inconsistent with the file check during the runs
 mkdir -p out-dd
 mkdir -p mnt-fuse
 
