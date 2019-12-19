@@ -21,13 +21,18 @@
 
 # Options: Parameter $3
 
-# Number of executions -- NOT WORKING
+# test
+# none
 
 # Options: Parameter $4
 
-# Size of the file -- NOT WORKING
+# Number of executions -- NOT WORKING
 
 # Options: Parameter $5
+
+# Size of the file -- NOT WORKING
+
+# Options: Parameter $6
 
 # Number of processors -- NOT WORKING
 
@@ -87,14 +92,14 @@ function run_file(){
   fi
 }
 
-# blocksize_vec=(4 16 100 128 1000)
-# filesize_vec=(30000)
-
-# blocksize_vec=(4 16 100 128 1000 1024 8192 10000)
-# filesize_vec=(10000 100000 1000000)
-
-blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-filesize_vec=(1048576 10485760000)
+if [ $3 == 'test' ]
+then
+  blocksize_vec=(4 16 100 128 1000)
+  filesize_vec=(30000)
+else
+  blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
+  filesize_vec=(1048576 10485760000)
+end
 
 #blocksize="4 16 100"
 # for j in $blocksize ; do
