@@ -58,6 +58,8 @@ else
   file=50000
 fi
 
+echo file
+
 function run_file(){
   run=$1
   size=$2
