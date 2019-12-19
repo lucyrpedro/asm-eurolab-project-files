@@ -71,26 +71,39 @@ for file in files:
     f = open(file, "r")
     for l in f:
 #        print(l)
-        m = re.match("(?P<bytes>[0-9]*) bytes \((?P<MB>[0-9.]+) (MB|GB), (?P<MiB>[0-9.]+) (MiB|GiB)\) copied, (?P<time>[0-9.]+) s, (?P<tp>[0-9.]+) (MB|GB)/s", l)
+        m = re.match("(?P<bytes>[0-9]*) bytes \((?P<MB>[0-9.]+) (kB|MB|GB), (?P<MiB>[0-9.]+) (KiB|MiB|GiB)\) copied, (?P<time>[0-9.]+) s, (?P<tp>[0-9.]+) (kB|MB|GB)/s", l)
         if m:
             data_M.update(m.groupdict())
             if (m.group(3) == 'GB'):
                 value = float(m[2])*1024
                 data_M["MB"] = value
+            if (m.group(3) == 'kB'):
+                value = float(m[2])/1024
+                data_M["MB"] = value
             if (m.group(5) == 'GiB'):
                 value = float(m[4])*1024
+                data_M["MiB"] = value
+            if (m.group(5) == 'KiB'):
+                value = float(m[4])/1024
                 data_M["MiB"] = value
             if (m.group(8) == 'GB'):
                 value = float(m[7])*1024
                 data_M["tp"] = value
+            if (m.group(8) == 'kB'):
+                value = float(m[7])/1024
+                data_M["tp"] = value
 #            print(data_M)
             out.writerow(data_M)
             f_out += 1
+        # else:
+        #     print(file)
+
     f.close()
 
-# how to eliminate trash?
-
 fd.close()
+
+print(f_in)
+print(f_out)
 
 if f_in != f_out:
     print("Some files were not properly processed!")
