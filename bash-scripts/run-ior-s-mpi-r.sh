@@ -71,7 +71,7 @@ function run_file(){
 # size_vec=(1048576)
 
 nproc_vec=(1 5 8 12 16)
-nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
+# nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
 size_vec=(1048576 2097152 5242880 10485760)
 
 for i in {1..1}; do
