@@ -251,7 +251,7 @@ else
 
   # Saving results and intermediate files
 
-  cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
+  cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
   cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
   ## Running IOR-s-mpi-r
@@ -281,17 +281,17 @@ else
 
   # Saving results and intermediate files
 
-  cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+  # cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
   cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
 
   # Cleaning the files
 
   cd ..
-  rm -rf out-ior-s-mpi
-  rm -rf out-ior-s-mpi-r
-  rm run-ior-s-mpi.sh
-  rm run-ior-s-mpi-r.sh
-  rm ior
+  # rm -rf out-ior-s-mpi
+  # rm -rf out-ior-s-mpi-r
+  # rm run-ior-s-mpi.sh
+  # rm run-ior-s-mpi-r.sh
+  # rm ior
 
   ## Running MD ###
 
