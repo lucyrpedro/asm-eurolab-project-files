@@ -277,7 +277,7 @@ else
 
   # Running the Python script to parse the results to a csv file
 
-  python3 parse-ior-s-mpi.py *.txt
+  python3 parse-ior-s-mpi-r.py *.txt
 
   # Saving results and intermediate files
 
