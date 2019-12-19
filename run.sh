@@ -54,9 +54,9 @@ then
 
   # Cleaning the files
 
-  # cd ..
-  # rm -rf out-dd
-  # rm run-dd.sh
+  cd ..
+  rm -rf out-dd
+  rm run-dd.sh
 
   echo 'xxxxxxxxxxxxxxxxxx'
   echo 'Running ior'
