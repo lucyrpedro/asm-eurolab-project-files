@@ -122,8 +122,10 @@ then
   # Cleaning the files
 
   cd ..
+  rm -rf out-ior-s-mpi
   rm -rf out-ior-s-mpi-r
   rm run-ior-s-mpi.sh
+  rm run-ior-s-mpi-r.sh
   rm ior
 
   ## Running MD ###
@@ -131,6 +133,9 @@ then
   echo 'xxxxxxxxxxxxxxxxxx'
   echo 'Running md'
   echo 'xxxxxxxxxxxxxxxxxx'
+
+pwd
+ls
 
   cd ../../asm-eurolab-project-files
   cp -f bash-scripts/run-md.sh ../libfuse/build/
