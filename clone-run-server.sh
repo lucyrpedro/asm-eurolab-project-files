@@ -13,8 +13,8 @@ cd asm-eurolab-project-files/
 
 ./prepare.sh
 
-cp /home/pedro/ior-3.2.1/build/src/ior asm-eurolab-project-files/benchmarks
-cp /home/pedro/md-workbench/build/src/md-workbench asm-eurolab-project-files/benchmarks
+cp /home/pedro/ior-3.2.1/build/src/ior benchmarks/
+cp /home/pedro/md-workbench/build/src/md-workbench benchmarks/
 
 ## Running the tests ###
 
