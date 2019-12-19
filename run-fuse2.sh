@@ -30,10 +30,10 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-dd.sh tmpfs fusexmp
-./run-dd.sh fuse fusexmp
-./run-dd.sh tmpfs fusexmp_fh
-./run-dd.sh fuse fusexmp_fh
+./run-dd.sh tmpfs fusexmp $2
+./run-dd.sh fuse fusexmp $2
+./run-dd.sh tmpfs fusexmp_fh $2
+./run-dd.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
 
@@ -79,10 +79,10 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-ior-s-mpi.sh tmpfs fusexmp
-./run-ior-s-mpi.sh fuse fusexmp
-./run-ior-s-mpi.sh tmpfs fusexmp_fh
-./run-ior-s-mpi.sh fuse fusexmp_fh
+./run-ior-s-mpi.sh tmpfs fusexmp $2
+./run-ior-s-mpi.sh fuse fusexmp $2
+./run-ior-s-mpi.sh tmpfs fusexmp_fh $2
+./run-ior-s-mpi.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
 
@@ -107,10 +107,10 @@ cd ../
 
 # Running the filters with a Bash script
 
-./run-ior-s-mpi-r.sh tmpfs fusexmp
-./run-ior-s-mpi-r.sh fuse fusexmp
-./run-ior-s-mpi-r.sh tmpfs fusexmp_fh
-./run-ior-s-mpi-r.sh fuse fusexmp_fh
+./run-ior-s-mpi-r.sh tmpfs fusexmp $2
+./run-ior-s-mpi-r.sh fuse fusexmp $2
+./run-ior-s-mpi-r.sh tmpfs fusexmp_fh $2
+./run-ior-s-mpi-r.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
 
@@ -148,10 +148,10 @@ cd ../libfuse/build/
 
 # Running the filters with a Bash script
 
-./run-md.sh tmpfs fusexmp
-./run-md.sh fuse fusexmp
-./run-md.sh tmpfs fusexmp_fh
-./run-md.sh fuse fusexmp_fh
+./run-md.sh tmpfs fusexmp $2
+./run-md.sh fuse fusexmp $2
+./run-md.sh tmpfs fusexmp_fh $2
+./run-md.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
 
