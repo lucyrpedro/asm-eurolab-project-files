@@ -23,35 +23,35 @@ mkdir -p results-figures/
 cp -f bash-scripts/run-dd.sh ../libfuse/build/
 cd ../libfuse/build/
 
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running dd'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-# Running the filters with a Bash script
-
-./run-dd.sh tmpfs fusexmp
-./run-dd.sh fuse fusexmp
-./run-dd.sh tmpfs fusexmp_fh
-./run-dd.sh fuse fusexmp_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
-
-cd out-dd
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-dd.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
-
-# Cleaning the files
-
-cd ..
-rm -rf out-dd
-rm run-dd.sh
+# echo 'xxxxxxxxxxxxxxxxxx'
+# echo 'Running dd'
+# echo 'xxxxxxxxxxxxxxxxxx'
+#
+# # Running the filters with a Bash script
+#
+# ./run-dd.sh tmpfs fusexmp
+# ./run-dd.sh fuse fusexmp
+# ./run-dd.sh tmpfs fusexmp_fh
+# ./run-dd.sh fuse fusexmp_fh
+#
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+#
+# cd out-dd
+#
+# # Running the Python script to parse the results to a csv file
+#
+# python3 parse-dd.py *.txt
+#
+# # Saving results and intermediate files
+#
+# cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+# cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
+#
+# # Cleaning the files
+#
+# cd ..
+# rm -rf out-dd
+# rm run-dd.sh
 
 ##### Install ior and then copy the executable!!!
 
