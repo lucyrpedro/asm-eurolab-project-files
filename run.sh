@@ -34,9 +34,7 @@ then
 
   # Running the filters with a Bash script
 
-#  echo ./run-dd.sh tmpfs passthrough $2
   ./run-dd.sh tmpfs passthrough $2
-#  echo ./run-dd.sh fuse passthrough $2
   ./run-dd.sh fuse passthrough $2
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
