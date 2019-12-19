@@ -143,21 +143,17 @@ python3 parse-ior-s-mpi-r.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
-cp -f figs-ior-s-mpi.pdf ../../../asm-eurolab-project-files/results-figures/
-cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
+cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
+cp -f figs-ior-s-mpi-r.pdf ../../../asm-eurolab-project-files/results-figures/
+cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
 cd ..
-rm -rf out-ior
-rm -rf out-ior-r
-rm -rf out-ior-s
 rm -rf out-ior-s-mpi
-rm run-ior.sh
-rm run-ior-r.sh
-rm run-ior-s.sh
+rm -rf out-ior-s-mpi-r
 rm run-ior-s-mpi.sh
+rm run-ior-s-mpi-r.sh
 rm ior
 
 ## Running MD ###
