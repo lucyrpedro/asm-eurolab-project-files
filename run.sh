@@ -134,9 +134,6 @@ then
   echo 'Running md'
   echo 'xxxxxxxxxxxxxxxxxx'
 
-pwd
-ls
-
   cd ../../asm-eurolab-project-files
   cp -f bash-scripts/run-md.sh ../libfuse/build/
   cp -f benchmarks/md-workbench ../libfuse/build/
