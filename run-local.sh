@@ -107,8 +107,8 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
-cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures/figs-ior-s-mpi.pdf
+cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
+cp -f figs-ior-s-mpi.pdf ../../../asm-eurolab-project-files/results-figures/
 cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi-r
@@ -143,8 +143,8 @@ python3 parse-ior-s-mpi-r.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
-cp -f figs-ior.pdf ../../../asm-eurolab-project-files/results-figures/figs-ior-s-mpi.pdf
+cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
+cp -f figs-ior-s-mpi.pdf ../../../asm-eurolab-project-files/results-figures/
 cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
