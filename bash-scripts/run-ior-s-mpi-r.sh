@@ -49,9 +49,9 @@ fi
 
 if [ $3 == 'test' ]
 then
-  nproc_vec=(1 2)
-  size_vec=(2000 5000)
-  file=50
+  nproc_vec=(1)
+  size_vec=(1048576)
+  file=50000
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
   size_vec=(1048576 2097152 5242880 10485760)
