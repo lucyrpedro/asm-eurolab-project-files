@@ -126,42 +126,42 @@ then
   # rm run-ior-s-mpi.sh
   # rm ior
 
-#   ## Running MD ###
-#
-#   echo 'xxxxxxxxxxxxxxxxxx'
-#   echo 'Running md'
-#   echo 'xxxxxxxxxxxxxxxxxx'
-#
-#   cd ../../asm-eurolab-project-files
-#   cp -f bash-scripts/run-md.sh ../libfuse/build/
-#   cp -f benchmarks/md-workbench ../libfuse/build/
-#
-#   cd ../libfuse/build/
-#
-#   # Running the filters with a Bash script
-#
-#   ./run-md.sh tmpfs passthrough $2
-#   ./run-md.sh fuse passthrough $2
-#
-#   cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
-#
-#   cd out-md
-#
-#   # Running the Python script to parse the results to a csv file
-#
-#   python3 parse-md.py *.txt
-#
-#   # Saving results and intermediate files
-#
-#   cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
-#   cp -rf ../out-md ../../../asm-eurolab-project-files/out-files/
-#
-#   # Cleaning the files
-#
-#   cd ..
-#   rm -rf out-md
-#   rm run-md.sh
-#   rm md-workbench
+  ## Running MD ###
+
+  echo 'xxxxxxxxxxxxxxxxxx'
+  echo 'Running md'
+  echo 'xxxxxxxxxxxxxxxxxx'
+
+  cd ../../asm-eurolab-project-files
+  cp -f bash-scripts/run-md.sh ../libfuse/build/
+  cp -f benchmarks/md-workbench ../libfuse/build/
+
+  cd ../libfuse/build/
+
+  # Running the filters with a Bash script
+
+  ./run-md.sh tmpfs passthrough $2
+  ./run-md.sh fuse passthrough $2
+
+  cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
+
+  cd out-md
+
+  # Running the Python script to parse the results to a csv file
+
+  python3 parse-md.py *.txt
+
+  # Saving results and intermediate files
+
+  cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
+  cp -rf ../out-md ../../../asm-eurolab-project-files/out-files/
+
+  # Cleaning the files
+
+  cd ..
+  rm -rf out-md
+  rm run-md.sh
+  rm md-workbench
 #
 # else
 #
