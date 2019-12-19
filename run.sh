@@ -19,6 +19,7 @@ then
 
   mkdir -p results-database/
   mkdir -p results-figures/
+  mkdir -p out-files/
 
   ## Running DD ###
 
@@ -49,10 +50,7 @@ then
   # Saving results and intermediate files
 
   cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-  ls
-  ls ../out-dd/
-  cp ../out-dd/ ../../../asm-eurolab-project-files/out-files/
-  ls ../../../asm-eurolab-project-files/out-files/
+  cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
 
   # Cleaning the files
 
