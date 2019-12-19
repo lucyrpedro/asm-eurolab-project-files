@@ -83,6 +83,9 @@ for i in {1..1}; do
   done
 done
 
-if grep -qs "$mount" /proc/mounts; then
+if grep -qs "$mount" /proc/mounts
+then
   fusermount -u mnt-fuse
+else
+  echo "The system was supposed to be mounted!"
 fi

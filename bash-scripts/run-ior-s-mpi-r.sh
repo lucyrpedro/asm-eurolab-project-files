@@ -78,11 +78,14 @@ function run_file(){
 for i in {1..1}; do
   for j in "${size_vec[@]}"; do
     for k in "${nproc_vec[@]}"; do
-      run_file $i $j $k 50000
+      run_file $i $j $k $file
     done
   done
 done
 
-if grep -qs "$mount" /proc/mounts; then
+if grep -qs "$mount" /proc/mounts
+then
   fusermount -u mnt-fuse
+else
+  echo "The system was supposed to be mounted!"
 fi
