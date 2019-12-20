@@ -85,7 +85,7 @@ function run_file(){
 
 }
 
-for i in {1..1}; do
+for i in {1..10}; do
   for j in "${size_vec[@]}"; do
     for k in "${nproc_vec[@]}"; do
       run_file $i $j $k $file_size $conv
