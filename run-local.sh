@@ -89,6 +89,8 @@ echo 'xxxxxxxxxxxxxxxxxx'
 ./run-ior-s-mpi.sh fuse passthrough_ll $2
 ./run-ior-s-mpi.sh tmpfs passthrough_fh $2
 ./run-ior-s-mpi.sh fuse passthrough_fh $2
+./run-ior-s-mpi.sh tmpfs passthrough_hp $2
+./run-ior-s-mpi.sh fuse passthrough_hp $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
 cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior-s-mpi.R out-ior-s-mpi
@@ -125,6 +127,8 @@ cd ../
 ./run-ior-s-mpi-r.sh fuse passthrough_ll $2
 ./run-ior-s-mpi-r.sh tmpfs passthrough_fh $2
 ./run-ior-s-mpi-r.sh fuse passthrough_fh $2
+./run-ior-s-mpi-r.sh tmpfs passthrough_hp $2
+./run-ior-s-mpi-r.sh fuse passthrough_hp $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r
 cp -f ../../asm-eurolab-project-files/r-scripts/plot-ior-s-mpi-r.R out-ior-s-mpi-r
@@ -174,6 +178,8 @@ cd ../libfuse/build/
 ./run-md.sh fuse passthrough_ll $2
 ./run-md.sh tmpfs passthrough_fh $2
 ./run-md.sh fuse passthrough_fh $2
+./run-md.sh tmpfs passthrough_hp $2
+./run-md.sh fuse passthrough_hp $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md
 cp -f ../../asm-eurolab-project-files/r-scripts/plot-md.R out-md

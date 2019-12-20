@@ -20,16 +20,18 @@ spack load -r openmpi
 spack load gcc
 
 dir=$1
+filter=$2
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
 fi
 
-if [ $dir == 'fuse' ]
-then test_dir=mnt-fuse/dev/shm/testfile
+if [ $dir == 'fuse' ]; then
+  if [ $filter == 'passthrough_hp' ]; then
+    test_dir=mnt-fuse/testfile
+  else test_dir=mnt-fuse/dev/shm/testfile
+  fi
 fi
-
-filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
