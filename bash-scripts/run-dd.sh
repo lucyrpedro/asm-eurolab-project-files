@@ -50,9 +50,9 @@ if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
 fi
 
-if [ $dir == 'fuse' ]
-  if [ $filter == 'passthrough_hp' ]
-    then test_dir=mnt-fuse/testfile
+if [ $dir == 'fuse' ]; then
+  if [ $filter == 'passthrough_hp' ]; then
+    test_dir=mnt-fuse/testfile
   else test_dir=mnt-fuse/dev/shm/testfile
   fi
 fi
