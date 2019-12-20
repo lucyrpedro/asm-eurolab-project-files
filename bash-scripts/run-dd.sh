@@ -66,12 +66,12 @@ if grep -qs "$mount" /proc/mounts; then
   echo "The system was not supposed to be mounted! Unmounting and mounting again!"
   fusermount -u mnt-fuse
   if [ $filter == 'passthrough_hp' ]; then
-    ./example/$filter /dev/shm mnt-fuse/
+    ./example/$filter /dev/shm mnt-fuse/ &
   else ./example/$filter mnt-fuse/
   fi
 else
   if [ $filter == 'passthrough_hp' ]; then
-    ./example/$filter /dev/shm mnt-fuse/
+    ./example/$filter /dev/shm mnt-fuse/ &
   else ./example/$filter mnt-fuse/
   fi
 fi
@@ -106,7 +106,7 @@ function run_file(){
   fi
 }
 
-for i in {1..10}; do      # 10
+for i in {1..1}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
     for k in "${filesize_vec[@]}"; do   # 2
       run_file $i $j $k
