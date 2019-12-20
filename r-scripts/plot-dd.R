@@ -25,7 +25,7 @@ if(args[1] == 0){
 } else
 {
   blocksize_op  = c(10000, 16384, 100000, 131072, 1000000, 1048576)
-  size_op   = c(1048576, 10485760000)
+  size_op   = c(10485760, 104857600, 1048576000, 10485760000)
   filter_op     = c("passthrough", "passthrough_ll", "passthrough_fh")
 }
 

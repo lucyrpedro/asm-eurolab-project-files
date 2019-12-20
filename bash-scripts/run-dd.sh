@@ -76,7 +76,7 @@ then
   filesize_vec=(30000)
 else
   blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-  filesize_vec=(1048576 10485760000)
+  filesize_vec=(10485760 104857600 1048576000 10485760000)
 fi
 
 function run_file(){
