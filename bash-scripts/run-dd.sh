@@ -46,8 +46,9 @@ spack load gcc
 dir=$1
 filter=$2
 
-if [ $dir == 'tmpfs' ]
-then test_dir=/dev/shm/testfile
+if [[ $dir == 'tmpfs' ]] && [[ $filter == 'passthrough_hp' ]]
+then test_dir=/testfile
+else test_dir=/dev/shm/testfile
 fi
 
 if [[ $dir == 'fuse' ]] && [[ $filter == 'passthrough_hp' ]]
