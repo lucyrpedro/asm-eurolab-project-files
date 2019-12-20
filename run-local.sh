@@ -34,6 +34,8 @@ echo 'xxxxxxxxxxxxxxxxxx'
 ./run-dd.sh fuse passthrough_ll $2
 ./run-dd.sh tmpfs passthrough_fh $2
 ./run-dd.sh fuse passthrough_fh $2
+./run-dd.sh tmpfs passthrough_hp $2
+./run-dd.sh fuse passthrough_hp $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
 cp -f ../../asm-eurolab-project-files/r-scripts/plot-dd.R out-dd
@@ -61,10 +63,6 @@ rm -rf out-dd
 rm run-dd.sh
 
 ##### Install ior and then copy the executable!!!
-
-# IOR needs to be updated to include all filters
-
-# IOR and IOR-r need the same parameters so that parse and plot will work
 
 echo 'xxxxxxxxxxxxxxxxxx'
 echo 'Running ior'
@@ -157,8 +155,6 @@ rm run-ior-s-mpi-r.sh
 rm ior
 
 ## Running MD ###
-
-# MD needs to be update to run all filters
 
 echo 'xxxxxxxxxxxxxxxxxx'
 echo 'Running md'

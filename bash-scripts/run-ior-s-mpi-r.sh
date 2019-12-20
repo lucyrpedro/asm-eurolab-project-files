@@ -55,7 +55,7 @@ then
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
   size_vec=(1048576 2097152 5242880 10485760)
-  file_size=50000
+  file_size=30000
   conv=(1024)
 fi
 
