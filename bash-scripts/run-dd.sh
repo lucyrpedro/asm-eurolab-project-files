@@ -65,12 +65,12 @@ mount="mnt-fuse"
 if grep -qs "$mount" /proc/mounts; then
   echo "The system was not supposed to be mounted! Unmounting and mounting again!"
   fusermount -u mnt-fuse
-  if $filter == 'passthrough_hp'; then
+  if [ $filter == 'passthrough_hp' ]; then
     ./example/$filter /dev/shm mnt-fuse/
   else ./example/$filter mnt-fuse/
   fi
 else
-  if $filter == 'passthrough_hp'; then
+  if [ $filter == 'passthrough_hp' ]; then
     ./example/$filter /dev/shm mnt-fuse/
   else ./example/$filter mnt-fuse/
   fi
