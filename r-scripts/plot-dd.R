@@ -19,7 +19,7 @@ pdf("figs-dd.pdf") # either save all files in one pdf or the files in specific p
 d = read.csv("results-dd.csv")
 
 if(args[1] == 0){
-  blocksize_op  = c(16, 100, 128, 1000)
+  blocksize_op  = c(100, 128, 1000)
   size_op       = c(30000)
   filter_op     = c("passthrough")
 } else

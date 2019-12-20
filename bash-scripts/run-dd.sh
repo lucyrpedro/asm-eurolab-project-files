@@ -80,7 +80,7 @@ fi
 
 if [ $3 == 'test' ]
 then
-  blocksize_vec=(16 100 128 1000)
+  blocksize_vec=(100 128 1000)
   filesize_vec=(30000)
 else
   blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
