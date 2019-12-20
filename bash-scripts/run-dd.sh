@@ -50,9 +50,11 @@ if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
 fi
 
-if [[ $dir == 'fuse' ]] && [[ $filter == 'passthrough_hp' ]]
-then test_dir=mnt-fuse/testfile
-else test_dir=mnt-fuse/dev/shm/testfile
+if [ $dir == 'fuse' ]
+  if [ $filter == 'passthrough_hp' ]
+    then test_dir=mnt-fuse/testfile
+  else test_dir=mnt-fuse/dev/shm/testfile
+  fi
 fi
 
 rm -rf /dev/shm/testfile
@@ -78,7 +80,7 @@ fi
 
 if [ $3 == 'test' ]
 then
-  blocksize_vec=(4 16 100 128 1000)
+  blocksize_vec=(16 100 128 1000)
   filesize_vec=(30000)
 else
   blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
