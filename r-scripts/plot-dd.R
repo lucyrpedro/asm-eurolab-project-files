@@ -25,7 +25,7 @@ if(args[1] == 0){
 } else
 {
   blocksize_op  = c(10000, 16384, 100000, 131072, 1000000, 1048576)
-  filesize_op   = c(1000000, 1048576)
+  size_op   = c(1048576, 10485760000)
   filter_op     = c("passthrough", "passthrough_ll", "passthrough_fh")
 }
 
@@ -87,15 +87,15 @@ for (k in 1:length(filter_op)){
     #   str(DF)
     #   print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Read")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TIME WRITE
@@ -109,15 +109,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Write")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TP READ
@@ -131,15 +131,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Read")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TP WRITE
@@ -153,15 +153,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Write")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
     }
