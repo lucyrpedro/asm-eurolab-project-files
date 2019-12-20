@@ -55,8 +55,6 @@ then test_dir=mnt-fuse/testfile
 else test_dir=mnt-fuse/dev/shm/testfile
 fi
 
-rm -rf mnt-fuse/testfile
-rm -rf mnt-fuse/dev/shm/testfile
 rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p out-dd
