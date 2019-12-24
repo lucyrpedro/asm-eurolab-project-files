@@ -170,130 +170,46 @@ else
   mkdir -p results-figures/
   mkdir -p out-files/
 
-  ## Running DD ###
+  # Running DD ###
 
-  ## DD needs to be update to run the last filter, passthrough_hp
+  # DD needs to be update to run the last filter, passthrough_hp
 
-  # cp -f bash-scripts/run-dd.sh ../libfuse/build/
-  # cd ../libfuse/build/
-  #
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  # echo 'Running dd'
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  #
-  # # Running the filters with a Bash script
-  #
-  # ./run-dd.sh tmpfs passthrough $2
-  # ./run-dd.sh fuse passthrough $2
-  # ./run-dd.sh tmpfs passthrough_ll $2
-  # ./run-dd.sh fuse passthrough_ll $2
-  # ./run-dd.sh tmpfs passthrough_fh $2
-  # ./run-dd.sh fuse passthrough_fh $2
-  # ./run-dd.sh tmpfs passthrough_hp $2
-  # ./run-dd.sh fuse passthrough_hp $2
-  #
-  # cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
-  #
-  # cd out-dd
-  #
-  # # Running the Python script to parse the results to a csv file
-  #
-  # python3 parse-dd.py *.txt
-  #
-  # # Saving results and intermediate files
-  #
-  # cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-  # cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
-  #
-  # # Cleaning the files
-  #
-  # cd ..
-  # rm -rf out-dd
-  # rm run-dd.sh
+  cp -f bash-scripts/run-dd.sh ../libfuse/build/
+  cd ../libfuse/build/
 
-  ##### Install ior and then copy the executable!!!
+  echo 'xxxxxxxxxxxxxxxxxx'
+  echo 'Running dd'
+  echo 'xxxxxxxxxxxxxxxxxx'
 
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  # echo 'Running ior'
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  #
-  # cd ../../asm-eurolab-project-files
-  # cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
-  # cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
-  # cp benchmarks/ior ../libfuse/build/
-  #
-  # cd ../libfuse/build/
-  #
-  # ## Running IOR-s-mpi
-  #
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  # echo 'Running ior-segments-mpi'
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  #
-  # # Running the filters with a Bash script
-  #
-  # ./run-ior-s-mpi.sh tmpfs passthrough $2
-  # ./run-ior-s-mpi.sh fuse passthrough $2
-  # ./run-ior-s-mpi.sh tmpfs passthrough_ll $2
-  # ./run-ior-s-mpi.sh fuse passthrough_ll $2
-  # ./run-ior-s-mpi.sh tmpfs passthrough_fh $2
-  # ./run-ior-s-mpi.sh fuse passthrough_fh $2
-  # ./run-ior-s-mpi.sh tmpfs passthrough_hp $2
-  # ./run-ior-s-mpi.sh fuse passthrough_hp $2
-  #
-  # cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi/
-  #
-  # cd out-ior-s-mpi
-  #
-  # # Running the Python script to parse the results to a csv file
-  #
-  # python3 parse-ior-s-mpi.py *.txt
-  #
-  # # Saving results and intermediate files
-  #
-  # cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
-  # cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
-  #
-  # ## Running IOR-s-mpi-r
-  #
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  # echo 'Running ior-segments-mpi-random'
-  # echo 'xxxxxxxxxxxxxxxxxx'
-  #
-  # cd ../
-  #
-  # # Running the filters with a Bash script
-  #
-  # ./run-ior-s-mpi-r.sh tmpfs passthrough $2
-  # ./run-ior-s-mpi-r.sh fuse passthrough $2
-  # ./run-ior-s-mpi-r.sh tmpfs passthrough_ll $2
-  # ./run-ior-s-mpi-r.sh fuse passthrough_ll $2
-  # ./run-ior-s-mpi-r.sh tmpfs passthrough_fh $2
-  # ./run-ior-s-mpi-r.sh fuse passthrough_fh $2
-  # ./run-ior-s-mpi-r.sh tmpfs passthrough_hp $2
-  # ./run-ior-s-mpi-r.sh fuse passthrough_hp $2
-  #
-  # cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r/
-  #
-  # cd out-ior-s-mpi-r
-  #
-  # # Running the Python script to parse the results to a csv file
-  #
-  # python3 parse-ior-s-mpi-r.py *.txt
-  #
-  # # Saving results and intermediate files
-  #
-  # cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
-  # cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
-  #
-  # # Cleaning the files
-  #
-  # cd ..
-  # rm -rf out-ior-s-mpi
-  # rm -rf out-ior-s-mpi-r
-  # rm run-ior-s-mpi.sh
-  # rm run-ior-s-mpi-r.sh
-  # rm ior
+  # Running the filters with a Bash script
+
+  ./run-dd.sh tmpfs passthrough $2
+  ./run-dd.sh fuse passthrough $2
+  ./run-dd.sh tmpfs passthrough_ll $2
+  ./run-dd.sh fuse passthrough_ll $2
+  ./run-dd.sh tmpfs passthrough_fh $2
+  ./run-dd.sh fuse passthrough_fh $2
+  ./run-dd.sh tmpfs passthrough_hp $2
+  ./run-dd.sh fuse passthrough_hp $2
+
+  cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
+
+  cd out-dd
+
+  # Running the Python script to parse the results to a csv file
+
+  python3 parse-dd.py *.txt
+
+  # Saving results and intermediate files
+
+  cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+  cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
+
+  # Cleaning the files
+
+  cd ..
+  rm -rf out-dd
+  rm run-dd.sh
 
   ## Running MD ###
 
@@ -339,6 +255,90 @@ else
   rm -rf out-md
   rm run-md.sh
   rm md-workbench
+
+  ##### Install ior and then copy the executable!!!
+
+  echo 'xxxxxxxxxxxxxxxxxx'
+  echo 'Running ior'
+  echo 'xxxxxxxxxxxxxxxxxx'
+
+  cd ../../asm-eurolab-project-files
+  cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
+  cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
+  cp benchmarks/ior ../libfuse/build/
+
+  cd ../libfuse/build/
+
+  ## Running IOR-s-mpi
+
+  echo 'xxxxxxxxxxxxxxxxxx'
+  echo 'Running ior-segments-mpi'
+  echo 'xxxxxxxxxxxxxxxxxx'
+
+  # Running the filters with a Bash script
+
+  ./run-ior-s-mpi.sh tmpfs passthrough $2
+  ./run-ior-s-mpi.sh fuse passthrough $2
+  ./run-ior-s-mpi.sh tmpfs passthrough_ll $2
+  ./run-ior-s-mpi.sh fuse passthrough_ll $2
+  ./run-ior-s-mpi.sh tmpfs passthrough_fh $2
+  ./run-ior-s-mpi.sh fuse passthrough_fh $2
+  ./run-ior-s-mpi.sh tmpfs passthrough_hp $2
+  ./run-ior-s-mpi.sh fuse passthrough_hp $2
+
+  cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi/
+
+  cd out-ior-s-mpi
+
+  # Running the Python script to parse the results to a csv file
+
+  python3 parse-ior-s-mpi.py *.txt
+
+  # Saving results and intermediate files
+
+  cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
+  cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
+
+  # ## Running IOR-s-mpi-r
+  #
+  # echo 'xxxxxxxxxxxxxxxxxx'
+  # echo 'Running ior-segments-mpi-random'
+  # echo 'xxxxxxxxxxxxxxxxxx'
+  #
+  # cd ../
+  #
+  # # Running the filters with a Bash script
+  #
+  # ./run-ior-s-mpi-r.sh tmpfs passthrough $2
+  # ./run-ior-s-mpi-r.sh fuse passthrough $2
+  # ./run-ior-s-mpi-r.sh tmpfs passthrough_ll $2
+  # ./run-ior-s-mpi-r.sh fuse passthrough_ll $2
+  # ./run-ior-s-mpi-r.sh tmpfs passthrough_fh $2
+  # ./run-ior-s-mpi-r.sh fuse passthrough_fh $2
+  # ./run-ior-s-mpi-r.sh tmpfs passthrough_hp $2
+  # ./run-ior-s-mpi-r.sh fuse passthrough_hp $2
+  #
+  # cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r/
+  #
+  # cd out-ior-s-mpi-r
+  #
+  # # Running the Python script to parse the results to a csv file
+  #
+  # python3 parse-ior-s-mpi-r.py *.txt
+  #
+  # # Saving results and intermediate files
+  #
+  # cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
+  # cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
+  #
+  # # Cleaning the files
+  #
+  cd ..
+  rm -rf out-ior-s-mpi
+  rm -rf out-ior-s-mpi-r
+  rm run-ior-s-mpi.sh
+  rm run-ior-s-mpi-r.sh
+  rm ior
 
   # echo 'xxxxxxxxxxxxxxxxxx'
   # echo 'Updating Git'
