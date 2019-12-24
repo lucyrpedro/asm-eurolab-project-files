@@ -174,42 +174,42 @@ else
 
   ## DD needs to be update to run the last filter, passthrough_hp
 
-  cp -f bash-scripts/run-dd.sh ../libfuse/build/
-  cd ../libfuse/build/
-
-  echo 'xxxxxxxxxxxxxxxxxx'
-  echo 'Running dd'
-  echo 'xxxxxxxxxxxxxxxxxx'
-
-  # Running the filters with a Bash script
-
-  ./run-dd.sh tmpfs passthrough $2
-  ./run-dd.sh fuse passthrough $2
-  ./run-dd.sh tmpfs passthrough_ll $2
-  ./run-dd.sh fuse passthrough_ll $2
-  ./run-dd.sh tmpfs passthrough_fh $2
-  ./run-dd.sh fuse passthrough_fh $2
-  ./run-dd.sh tmpfs passthrough_hp $2
-  ./run-dd.sh fuse passthrough_hp $2
-
-  cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
-
-  cd out-dd
-
-  # Running the Python script to parse the results to a csv file
-
-  python3 parse-dd.py *.txt
-
-  # Saving results and intermediate files
-
-  cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-  cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
-
-  # Cleaning the files
-
-  cd ..
-  rm -rf out-dd
-  rm run-dd.sh
+  # cp -f bash-scripts/run-dd.sh ../libfuse/build/
+  # cd ../libfuse/build/
+  #
+  # echo 'xxxxxxxxxxxxxxxxxx'
+  # echo 'Running dd'
+  # echo 'xxxxxxxxxxxxxxxxxx'
+  #
+  # # Running the filters with a Bash script
+  #
+  # ./run-dd.sh tmpfs passthrough $2
+  # ./run-dd.sh fuse passthrough $2
+  # ./run-dd.sh tmpfs passthrough_ll $2
+  # ./run-dd.sh fuse passthrough_ll $2
+  # ./run-dd.sh tmpfs passthrough_fh $2
+  # ./run-dd.sh fuse passthrough_fh $2
+  # ./run-dd.sh tmpfs passthrough_hp $2
+  # ./run-dd.sh fuse passthrough_hp $2
+  #
+  # cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
+  #
+  # cd out-dd
+  #
+  # # Running the Python script to parse the results to a csv file
+  #
+  # python3 parse-dd.py *.txt
+  #
+  # # Saving results and intermediate files
+  #
+  # cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+  # cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
+  #
+  # # Cleaning the files
+  #
+  # cd ..
+  # rm -rf out-dd
+  # rm run-dd.sh
 
   ##### Install ior and then copy the executable!!!
 
@@ -303,7 +303,7 @@ else
   echo 'Running md'
   echo 'xxxxxxxxxxxxxxxxxx'
 
-  cd ../../asm-eurolab-project-files
+  # cd ../../asm-eurolab-project-files
   cp -f bash-scripts/run-md.sh ../libfuse/build/
   cp -f benchmarks/md-workbench ../libfuse/build/
 
