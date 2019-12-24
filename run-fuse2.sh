@@ -2,6 +2,8 @@
 
 # Assuming libfuse is installed in the directory ../libfuse
 
+# Change the use of libfuse directory, which is not necessary at all!
+
 if [ $1 == 'clean' ]
 then
   rm -rf results-database
@@ -135,7 +137,7 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
+cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
 cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi
@@ -163,7 +165,7 @@ cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 #
 # # Saving results and intermediate files
 #
-# cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
+# cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
 # cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
 #
 # # Cleaning the files
