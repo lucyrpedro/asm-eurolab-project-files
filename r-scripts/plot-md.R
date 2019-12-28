@@ -15,6 +15,8 @@
 
 # ########################################################
 
+options(scipen = 999) # disable scientific notation
+
 args = commandArgs(trailingOnly=TRUE)
 
 pdf("figs-md.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice

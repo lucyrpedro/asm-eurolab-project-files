@@ -12,7 +12,7 @@ filename = "results-dd.csv"
 # Open the output file
 
 fd = open(filename, "w")
-fields = ["file", "bytes", "MB", "MiB", "time", "tp", "filter", "dir_mem", "iter", "blocksize", "size", "operation", "options", "read_time", "write_time", "read_tp", "write_tp", "prefix", "n", "ppn", "config", "timesteps", "sync_t"]
+fields = ["file", "bytes", "MB", "MiB", "time", "tp", "filter", "dir_mem", "iter", "blocksize", "size", "operation", "options", "machine"]
 out = csv.DictWriter(fd, fieldnames=fields, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 out.writeheader()
 
@@ -52,6 +52,7 @@ for file in files:
 #    print(file)
     data_M["file"] = file
     data_M["options"] = 'dd'
+    data_M["machine"] = 'Sky1'
 
     # Parse the data for the information inside the filename
 

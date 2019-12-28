@@ -14,7 +14,7 @@ filename = "results-ior-s-mpi.csv"
 # Open the output file
 
 fd = open(filename, "w")
-fields = ["file", "bytes", "MB", "MiB", "time", "tp", "filter", "dir_mem", "iter", "blocksize", "transfersize", "size", "operation", "options", "read_time", "write_time", "read_tp", "write_tp", "prefix", "n", "ppn", "config", "timesteps", "sync_t", "nproc", "size"]
+fields = ["file", "time", "tp-MiB", "tp-MB", "filter", "dir_mem", "iter", "size", "operation", "options", "nproc", "size", "machine"]
 out = csv.DictWriter(fd, fieldnames=fields, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 out.writeheader()
 
@@ -55,6 +55,7 @@ for file in files:
     f_in += 1
     data_M["file"] = file
     data_M["options"] = 'ior'
+    data_M["machine"] = 'Sky1'
 
     # Parse the data for the information inside the filename
 
@@ -70,10 +71,11 @@ for file in files:
     aux = 0
     for l in f:
 
-        mw = re.match("read([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
+        mw = re.match("read([ ]+)(?P<tp-MiB>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mw:
             data_M.update(mw.groupdict())
+            data_M["tp-MB"] = float(m[1])*1.048
             data_M["operation"] = 'read'
             out.writerow(data_M)
             f_out += 1
