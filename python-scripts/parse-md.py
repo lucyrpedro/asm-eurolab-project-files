@@ -73,12 +73,13 @@ for file in files:
     f = open(file, "r")
     for l in f:
 
+        aux = 0;
         m = re.match(".*benchmark process.*rate:(?P<rate_iops>[0-9.]*) iops/s.*rate:(?P<rate_objs>[0-9.]*) obj/s.*op-max:([0-9e.\-+]*)s.*read\((?P<read_time1>[0-9e.\-+]*)s, (?P<read_time2>[0-9e.\-+]*)s, (?P<read_time3>[0-9e.\-+]*)s, (?P<read_time4>[0-9e.\-+]*)s, (?P<read_time5>[0-9e.\-+]*)s, (?P<read_time6>[0-9e.\-+]*)s, (?P<read_time7>[0-9e.\-+]*)s\).*stat\(([0-9e.\-+]*)s.*create\((?P<write_time1>[0-9e.\-+]*)s, (?P<write_time2>[0-9e.\-+]*)s, (?P<write_time3>[0-9e.\-+]*)s, (?P<write_time4>[0-9e.\-+]*)s, (?P<write_time5>[0-9e.\-+]*)s, (?P<write_time6>[0-9e.\-+]*)s, (?P<write_time7>[0-9e.\-+]*)s\).*delete\(([0-9e.\-+]*)s.*", l)
 
         if m:
             data_M.update(m.groupdict())
-            out.writerow(data_M)
             f_out += 1
+            aux += 1
 
         m2 = re.match(".*Total runtime: (?P<total_time>[0-9]*)s.*", l)
 
@@ -86,10 +87,17 @@ for file in files:
             data_M.update(m2.groupdict())
             out.writerow(data_M)
             f_out += 1
+            aux += 1
+
+        if aux == 0:
+            print("Error processing file", file)
 
     f.close()
 
 fd.close()
+
+# print(f_in)
+# print(f_out)
 
 if f_in != f_out/2:
     print("Some files were not properly processed!")

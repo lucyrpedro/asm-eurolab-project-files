@@ -68,6 +68,7 @@ for file in files:
     f = open(file, "r")
     for l in f:
 
+        aux = 0
         mw = re.match("read([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mw:
@@ -75,8 +76,10 @@ for file in files:
             data_M["operation"] = 'read'
             out.writerow(data_M)
             f_out += 1
-#        else:
- #           print(file)    why doesn't this work?
+            aux += 1;
+
+        if aux == 0:
+            print("Error processing file", file)
 
     f.close()
 
@@ -111,6 +114,7 @@ for file in files:
     f = open(file, "r")
     for l in f:
 
+        aux = 0
         mr = re.match("write([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mr:
@@ -118,6 +122,10 @@ for file in files:
             data_M["operation"] = 'write'
             out.writerow(data_M)
             f_out += 1
+            aux += 1;
+
+        if aux == 0:
+            print("Error processing file", file)
 
     f.close()
 

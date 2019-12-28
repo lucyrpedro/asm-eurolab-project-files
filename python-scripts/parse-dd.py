@@ -64,14 +64,15 @@ for file in files:
             data_M["operation"] = 'read'
         if (n.group(6) == 'write'):
             data_M["operation"] = 'write'
-#        out.writerow(data_M)
 
     # Parse the data for the information inside the result file
 
     f = open(file, "r")
     for l in f:
-#        print(l)
+
+        aux = 0;
         m = re.match("(?P<bytes>[0-9]*) bytes \((?P<MB>[0-9.]+) (MB|GB), (?P<MiB>[0-9.]+) (MiB|GiB)\) copied, (?P<time>[0-9.]+) s, (?P<tp>[0-9.]+) (MB|GB)/s", l)
+
         if m:
             data_M.update(m.groupdict())
             if (m.group(3) == 'GB'):
@@ -83,14 +84,19 @@ for file in files:
             if (m.group(8) == 'GB'):
                 value = float(m[7])*1024
                 data_M["tp"] = value
-#            print(data_M)
             out.writerow(data_M)
             f_out += 1
+            aux += 1;
+
+        if aux == 0:
+            print("Error processing file", file)
+
     f.close()
 
-# how to eliminate trash?
-
 fd.close()
+
+# print(f_in)
+# print(f_out)
 
 if f_in != f_out:
     print("Some files were not properly processed!")
