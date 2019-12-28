@@ -21,13 +21,18 @@
 
 # Options: Parameter $3
 
-# Number of executions -- NOT WORKING
+# test
+# none
 
 # Options: Parameter $4
 
-# Size of the file -- NOT WORKING
+# Number of executions -- NOT WORKING
 
 # Options: Parameter $5
+
+# Size of the file -- NOT WORKING
+
+# Options: Parameter $6
 
 # Number of processors -- NOT WORKING
 
@@ -39,20 +44,21 @@ spack load -r openmpi
 spack load gcc
 
 dir=$1
+filter=$2
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
 fi
 
-if [ $dir == 'fuse' ]
-then test_dir=mnt-fuse/dev/shm/testfile
+if [ $dir == 'fuse' ]; then
+  if [ $filter == 'passthrough_hp' ]; then
+    test_dir=mnt-fuse/testfile
+  else test_dir=mnt-fuse/dev/shm/testfile
+  fi
 fi
-
-filter=$2
 
 rm -rf /dev/shm/testfile
 rm -rf out
-rm -rf out-dd # This option is inconsistent with the file check during the runs
 mkdir -p out-dd
 mkdir -p mnt-fuse
 
@@ -61,9 +67,24 @@ mount="mnt-fuse"
 if grep -qs "$mount" /proc/mounts; then
   echo "The system was not supposed to be mounted! Unmounting and mounting again!"
   fusermount -u mnt-fuse
-  ./example/$filter mnt-fuse/
+  if [ $filter == 'passthrough_hp' ]; then
+    ./example/$filter /dev/shm mnt-fuse/ &
+  else ./example/$filter mnt-fuse/
+  fi
 else
-  ./example/$filter mnt-fuse/
+  if [ $filter == 'passthrough_hp' ]; then
+    ./example/$filter /dev/shm mnt-fuse/ &
+  else ./example/$filter mnt-fuse/
+  fi
+fi
+
+if [ $3 == 'test' ]
+then
+  blocksize_vec=(100 128 1000)
+  filesize_vec=(30000)
+else
+  blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
+  filesize_vec=(10485760 104857600 1048576000 10485760000)
 fi
 
 function run_file(){
@@ -87,19 +108,7 @@ function run_file(){
   fi
 }
 
-# blocksize_vec=(4 16 100 128 1000)
-# filesize_vec=(30000)
-
-# blocksize_vec=(4 16 100 128 1000 1024 8192 10000)
-# filesize_vec=(10000 100000 1000000)
-
-blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-filesize_vec=(1048576 10485760000)
-
-#blocksize="4 16 100"
-# for j in $blocksize ; do
-
-for i in {1..30}; do      # 10
+for i in {1..10}; do      # 10
   for j in "${blocksize_vec[@]}"; do     # 7
     for k in "${filesize_vec[@]}"; do   # 2
       run_file $i $j $k
@@ -107,6 +116,9 @@ for i in {1..30}; do      # 10
   done
 done
 
-if grep -qs "$mount" /proc/mounts; then
+if grep -qs "$mount" /proc/mounts
+then
   fusermount -u mnt-fuse
+else
+  echo "The system was supposed to be mounted!"
 fi

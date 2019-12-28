@@ -2,11 +2,13 @@
 
 # Assuming libfuse is installed in the directory ../libfuse
 
+# Change the use of libfuse directory, which is not necessary at all!
+
 if [ $1 == 'clean' ]
 then
-  rm -rf results-database/*
-  rm -rf results-figures/*
-  rm -rf out-files/*
+  rm -rf results-database
+  rm -rf results-figures
+  rm -rf out-files
   rm -rf ../libfuse/build/out*
   rm -f ../libfuse/build/*.sh
   rm -f ../libfuse/build/*.py
@@ -17,6 +19,7 @@ fi
 
 mkdir -p results-database/
 mkdir -p results-figures/
+mkdir -p out-files/
 
 ## Running DD ###
 
@@ -29,10 +32,10 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-dd.sh tmpfs fusexmp
-./run-dd.sh fuse fusexmp
-./run-dd.sh tmpfs fusexmp_fh
-./run-dd.sh fuse fusexmp_fh
+./run-dd.sh tmpfs fusexmp $2
+./run-dd.sh fuse fusexmp $2
+./run-dd.sh tmpfs fusexmp_fh $2
+./run-dd.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
 
@@ -45,13 +48,54 @@ python3 parse-dd.py *.txt
 # Saving results and intermediate files
 
 cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-dd ../../../asm-eurolab-project-files/out-files
+cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
 
 # Cleaning the files
 
 cd ..
 rm -rf out-dd
 rm run-dd.sh
+
+## Running MD ###
+
+# MD needs to be update to run all filters
+
+echo 'xxxxxxxxxxxxxxxxxx'
+echo 'Running md'
+echo 'xxxxxxxxxxxxxxxxxx'
+
+cd ../../asm-eurolab-project-files
+cp -f bash-scripts/run-md.sh ../libfuse/build/
+cp -f benchmarks/md-workbench ../libfuse/build/
+
+cd ../libfuse/build/
+
+# Running the filters with a Bash script
+
+./run-md.sh tmpfs fusexmp $2
+./run-md.sh fuse fusexmp $2
+./run-md.sh tmpfs fusexmp_fh $2
+./run-md.sh fuse fusexmp_fh $2
+
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
+
+cd out-md
+
+# Running the Python script to parse the results to a csv file
+
+python3 parse-md.py *.txt
+
+# Saving results and intermediate files
+
+cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
+
+# Cleaning the files
+
+cd ..
+rm -rf out-md
+rm run-md.sh
+rm md-workbench
 
 ##### Install ior and then copy the executable!!!
 
@@ -78,10 +122,10 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-ior-s-mpi.sh tmpfs fusexmp
-./run-ior-s-mpi.sh fuse fusexmp
-./run-ior-s-mpi.sh tmpfs fusexmp_fh
-./run-ior-s-mpi.sh fuse fusexmp_fh
+./run-ior-s-mpi.sh tmpfs fusexmp $2
+./run-ior-s-mpi.sh fuse fusexmp $2
+./run-ior-s-mpi.sh tmpfs fusexmp_fh $2
+./run-ior-s-mpi.sh fuse fusexmp_fh $2
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
 
@@ -93,8 +137,8 @@ python3 parse-ior-s-mpi.py *.txt
 
 # Saving results and intermediate files
 
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi.csv
-cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
+cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi
 
@@ -102,75 +146,34 @@ cp -rf ../out-ior-s-mpi ../../../asm-eurolab-project-files/out-files
 # echo 'Running ior-segments-mpi-random'
 # echo 'xxxxxxxxxxxxxxxxxx'
 #
-cd ../
-
-# Running the filters with a Bash script
-
-./run-ior-s-mpi-r.sh tmpfs fusexmp
-./run-ior-s-mpi-r.sh fuse fusexmp
-./run-ior-s-mpi-r.sh tmpfs fusexmp_fh
-./run-ior-s-mpi-r.sh fuse fusexmp_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
-
-cd out-ior-s-mpi-r
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-ior-s-mpi.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-ior.csv ../../../asm-eurolab-project-files/results-database/results-ior-s-mpi-r.csv
-cp -rf ../out-ior-s-mpi-r ../../../asm-eurolab-project-files/out-files
-
-# Cleaning the files
+# cd ../
+#
+# # Running the filters with a Bash script
+#
+# ./run-ior-s-mpi-r.sh tmpfs fusexmp $2
+# ./run-ior-s-mpi-r.sh fuse fusexmp $2
+# ./run-ior-s-mpi-r.sh tmpfs fusexmp_fh $2
+# ./run-ior-s-mpi-r.sh fuse fusexmp_fh $2
+#
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi-r/
+#
+# cd out-ior-s-mpi-r
+#
+# # Running the Python script to parse the results to a csv file
+#
+# python3 parse-ior-s-mpi.py *.txt
+#
+# # Saving results and intermediate files
+#
+# cp -f results-ior-s-mpi-r.csv ../../../asm-eurolab-project-files/results-database/
+# cp -rf ../out-ior-s-mpi-r/ ../../../asm-eurolab-project-files/out-files/
+#
+# # Cleaning the files
 
 cd ..
 rm -rf out-ior-s-mpi-r
 rm -rf run-ior-s-mpi.sh
 rm ior
-
-## Running MD ###
-
-# MD needs to be update to run all filters
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running md'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-cd ../../asm-eurolab-project-files
-cp -f bash-scripts/run-md.sh ../libfuse/build/
-cp -f benchmarks/md-workbench ../libfuse/build/
-
-cd ../libfuse/build/
-
-# Running the filters with a Bash script
-
-./run-md.sh tmpfs fusexmp
-./run-md.sh fuse fusexmp
-./run-md.sh tmpfs fusexmp_fh
-./run-md.sh fuse fusexmp_fh
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
-
-cd out-md
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-md.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-md ../../../asm-eurolab-project-files/out-files
-
-# Cleaning the files
-
-cd ..
-rm -rf out-md
-rm run-md.sh
-rm md-workbench
 
 # echo 'xxxxxxxxxxxxxxxxxx'
 # echo 'Updating Git'

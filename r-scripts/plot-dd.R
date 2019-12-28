@@ -2,9 +2,8 @@
 
 # Options for the input parameters
 
-# filter_op     passthrough passthrough_fh passthrough_hp passthrough_ll
-# blocksize_op  100 128 1000 1024 8192 10000
-# size_op       10000 100000 1000000
+# 0   test parameters
+# 1   real parameters
 
 # Options for the output parameters
 
@@ -13,20 +12,22 @@
 
 # ########################################################
 
+args = commandArgs(trailingOnly=TRUE)
+
 pdf("figs-dd.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
 
 d = read.csv("results-dd.csv")
 
-# blocksize_op = c(4, 16, 100, 128, 1000);
-# size_op = c(30000);
-
-# blocksize_op = c(4, 16, 100, 128, 1000, 8192, 10000)
-# size_op = c(10000, 100000, 1000000)
-
-blocksize_op = c(10000, 16384, 100000, 131072, 1000000, 1048576)
-filesize_op = c(1000000, 1048576)
-
-filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
+if(args[1] == 0){
+  blocksize_op  = c(100, 128, 1000)
+  size_op       = c(30000)
+  filter_op     = c("passthrough")
+} else
+{
+  blocksize_op  = c(10000, 16384, 100000, 131072, 1000000, 1048576)
+  size_op   = c(10485760, 104857600, 1048576000, 10485760000)
+  filter_op     = c("passthrough", "passthrough_ll", "passthrough_fh")
+}
 
 for (k in 1:length(filter_op)){
 
@@ -86,15 +87,15 @@ for (k in 1:length(filter_op)){
     #   str(DF)
     #   print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Read")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TIME WRITE
@@ -108,15 +109,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Write")
         legend("topright", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TP READ
@@ -130,15 +131,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Read")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
         # #### TP WRITE
@@ -152,15 +153,15 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %e", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmpfs", rep("", len_bs-1), "fuse", rep("",len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Write")
         legend("topleft", fill = cols, legend = blocksize_op, horiz = F, title="Blocksize")
 
     }

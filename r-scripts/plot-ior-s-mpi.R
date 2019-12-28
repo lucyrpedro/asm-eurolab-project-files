@@ -4,11 +4,8 @@
 
 # Options for the input parameters
 
-# filter_op             only passthrough for now (passthrough_fh passthrough_hp passthrough_ll)
-# nproc_vec         (1000000 2000000 5000000 10000000)
-# size_vec      (200000 500000 1000000)
-# nproc_vec         (1048576 2097152 5242880 10485760)
-# size_vec      (262144 524288 1048576)
+# 0   test parameters
+# 1   real parameters
 
 # Options for the output parameters
 
@@ -17,28 +14,35 @@
 
 # ########################################################
 
+args = commandArgs(trailingOnly=TRUE)
+
 pdf("figs-ior-s-mpi.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
 
 d = read.csv("results-ior-s-mpi.csv")
 
-# nproc_op = c(1, 2)
-# size_op = c(2000, 5000)
-
-nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-size_op = c(1048576, 2097152, 5242880, 10485760)
-
-filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
+if(args[1] == 0){
+  nproc_op = c(1, 2)
+  size_op = c(200, 600)
+  filter_op   = c("passthrough")
+} else
+{
+  nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  size_op = c(1048576, 2097152, 5242880, 10485760)
+  filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh", "passthrough_hp")
+}
 
 for (k in 1:length(filter_op)){
 
     d_filter    = subset(d,   filter == filter_op[k])
 
-    # print(d_filter)
+#    print(d_filter)
 
     read_tmpfs      = subset(d_filter, operation == 'read'  & dir_mem == 'tmpfs')
     read_fuse       = subset(d_filter, operation == 'read'  & dir_mem == 'fuse')
     write_tmpfs     = subset(d_filter, operation == 'write' & dir_mem == 'tmpfs')
     write_fuse      = subset(d_filter, operation == 'write' & dir_mem == 'fuse')
+
+#    print(read_tmpfs)
 
     for (j in 1:length(size_op)){
 
@@ -59,6 +63,8 @@ for (k in 1:length(filter_op)){
             x_write_tmpfs     = subset(write_tmpfs,  size == size_op[j] & nproc == nproc_op[i])
             x_write_fuse      = subset(write_fuse,   size == size_op[j] & nproc == nproc_op[i])
 
+#            print(x_read_tmpfs)
+
             read_tmpfs_time       = c(read_tmpfs_time, x_read_tmpfs$time)
             read_fuse_time        = c(read_fuse_time, x_read_fuse$time)
             write_tmpfs_time      = c(write_tmpfs_time, x_write_tmpfs$time)
@@ -78,6 +84,10 @@ for (k in 1:length(filter_op)){
 
         # #### TIME READ
 
+#        print(read_tmpfs_time)
+
+    if (length(read_tmpfs_time) == length(read_fuse_time)){
+
         DF = data.frame(
         x = c(read_tmpfs_time, read_fuse_time),
         y = rep(c("READ TMPFS", "READ FUSE"), each = len_bs*len),
@@ -94,11 +104,18 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Read")
         legend("topright", fill = cols, legend = nproc_op, horiz = F, title="nproc")
 
+    } else {
+    print (length(read_tmpfs_time))
+    print (length(read_fuse_time))
+    }
+
         # #### TIME WRITE
+
+    if (length(write_tmpfs_time) == length(write_fuse_time)){
 
         DF = data.frame(
         x = c(write_tmpfs_time, write_fuse_time),
@@ -116,11 +133,18 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Time")
+                names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Time Write")
         legend("topright", fill = cols, legend = nproc_op, horiz = F, title="nproc")
 
+    } else {
+    print (length(write_tmpfs_time))
+    print (length(write_fuse_time))
+    }
+
         # #### TP READ
+
+    if (length(read_tmpfs_tp) == length(read_fuse_tp)){
 
         DF = data.frame(
         x = c(read_tmpfs_tp, read_fuse_tp),
@@ -138,11 +162,18 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Read", "TMPFS", rep("", len_bs-2), "Read", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Read")
         legend("topleft", fill = cols, legend = nproc_op, horiz = F, title="nproc")
 
-        # #### TIME WRITE
+    } else {
+    print (length(read_tmpfs_tp))
+    print (length(read_fuse_tp))
+    }
+
+        # #### TP WRITE
+
+    if (length(write_tmpfs_tp) == length(write_fuse_tp)){
 
         DF = data.frame(
         x = c(write_tmpfs_tp, write_fuse_tp),
@@ -160,9 +191,14 @@ for (k in 1:length(filter_op)){
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
-                names = c("Write", "TMPFS", rep("", len_bs-2), "Write", "FUSE", rep("",len_bs-2)),
-                xaxs = FALSE, main=title, ylab="Throughput")
+                names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
+                xaxs = FALSE, main=title, ylab="Throughput Write")
         legend("topleft", fill = cols, legend = nproc_op, horiz = F, title="nproc")
+
+    } else {
+    print (length(write_tmpfs_tp))
+    print (length(write_fuse_tp))
+    }
 
     }
 

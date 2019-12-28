@@ -9,7 +9,7 @@ import csv
 
 # Create the output filename
 
-filename = "results-ior-s-mpi.csv"
+filename = "results-ior-s-mpi-r.csv"
 
 # Open the output file
 
@@ -52,6 +52,7 @@ f_out = 0
 files = sys.argv[1:]
 for file in files:
     f_in += 1
+#    print(file)
     data_M["file"] = file
     data_M["options"] = 'ior'
 
@@ -67,7 +68,6 @@ for file in files:
     f = open(file, "r")
     for l in f:
 
-        aux = 0
         mw = re.match("read([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mw:
@@ -75,10 +75,8 @@ for file in files:
             data_M["operation"] = 'read'
             out.writerow(data_M)
             f_out += 1
-            aux += 1;
-
-        if aux == 0:
-            print("Error processing file", file)
+#        else:
+ #           print(file)    why doesn't this work?
 
     f.close()
 
@@ -113,7 +111,6 @@ for file in files:
     f = open(file, "r")
     for l in f:
 
-        aux = 0
         mr = re.match("write([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mr:
@@ -121,10 +118,6 @@ for file in files:
             data_M["operation"] = 'write'
             out.writerow(data_M)
             f_out += 1
-            aux += 1;
-
-        if aux == 0:
-            print("Error processing file", file)
 
     f.close()
 

@@ -4,28 +4,35 @@
 
 # Options for the input parameters
 
-# filter_op             only passthrough for now (passthrough_fh passthrough_hp passthrough_ll)
-# isize_vec             (200 500 1000)
-# psize_vec             (1000 3000 5000 10000)
-# nproc                 (1 2 3 4 5 6 7 8 9 10)
+# 0   test parameters
+# 1   real parameters
 
 # Options for the output parameters
 
 # time
+# tp
+# total time
 
 # ########################################################
+
+args = commandArgs(trailingOnly=TRUE)
 
 pdf("figs-md.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
 
 d = read.csv("results-md.csv")
 
-# isize_op = c(200, 500)
-# psize_op = c(1000)
-# nproc_op = c(1, 2)
-
-nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-isize_op = c(200000, 500000, 1000000)
-psize_op = c(1000000, 3000000, 5000000, 10000000)
+if(args[1] == 0){
+  isize_op = c(200, 500)
+  psize_op = c(1000)
+  nproc_op = c(1, 2)
+  filter_op = c("passthrough")
+} else
+{
+  nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+  isize_op = c(200000, 500000, 1000000)
+  psize_op = c(1000000, 3000000, 5000000, 10000000)
+  filter_op = c("passthrough", "passthrough_ll", "passthrough_fh")
+}
 
 legend_vet = numeric(0);
 
@@ -35,8 +42,6 @@ for (i in 1:length(isize_op)){
     legend_vet = c(legend_vet, v);
   }
 }
-
-filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh")
 
 for (k in 1:length(filter_op)){
 
