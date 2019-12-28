@@ -86,14 +86,14 @@ for (k in 1:length(filter_op)){
 #        print(DF)
 
         filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main = title, ylab = "Time Read")
+                xaxs = FALSE, main = title, ylab = "Time Read (in seconds)")
         legend("topright", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
@@ -115,14 +115,14 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main = title, ylab = "Time Write")
+                xaxs = FALSE, main = title, ylab = "Time Write (in seconds)")
         legend("topright", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
@@ -144,14 +144,14 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main = title, ylab = "Throughput Read")
+                xaxs = FALSE, main = title, ylab = "Throughput Read (in MB/s)")
         legend("topleft", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
@@ -173,14 +173,14 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main = title, ylab = "Throughput Write")
+                xaxs = FALSE, main = title, ylab = "Throughput Write (in MB/s)")
         legend("topleft", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
