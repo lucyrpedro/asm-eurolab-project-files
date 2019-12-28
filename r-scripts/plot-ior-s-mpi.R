@@ -85,8 +85,8 @@ for (k in 1:length(filter_op)){
 #        str(DF)
 #        print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -114,8 +114,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -143,8 +143,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -172,8 +172,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%d_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %d", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %s", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)

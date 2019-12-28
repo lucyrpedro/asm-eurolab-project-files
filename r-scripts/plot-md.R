@@ -27,7 +27,7 @@ legend_vet = numeric(0);
 
 for (i in 1:length(isize_op)){
   for (j in 1:length(psize_op)){
-    v = sprintf("isize_%d-psize_%d", isize_op[i], psize_op[j]);
+    v = sprintf("isize_%s-psize_%s", isize_op[i], psize_op[j]);
     legend_vet = c(legend_vet, v);
   }
 }
@@ -83,7 +83,7 @@ for (k in 1:length(filter_op)){
 #           str(DF)
 #           print(DF)
 
-        title = sprintf("MD-Workbench Time Read - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+        title = sprintf("MD-Workbench Time Read - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
         cols = rainbow(len_class, s = 0.5)
         boxplot(x ~ z + y, data = DF,
@@ -113,7 +113,7 @@ for (k in 1:length(filter_op)){
 #           str(DF)
 #           print(DF)
 
-        title = sprintf("MD-Workbench Time Write - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+        title = sprintf("MD-Workbench Time Write - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
         cols = rainbow(len_class, s = 0.5)
         boxplot(x ~ z + y, data = DF,
@@ -136,7 +136,7 @@ for (k in 1:length(filter_op)){
         #           str(DF)
         #           print(DF)
 
-        title = sprintf("MD-Workbench Total Time - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+        title = sprintf("MD-Workbench Total Time - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
         cols = rainbow(len_class, s = 0.5)
         boxplot(x ~ z + y, data = DF,
@@ -159,7 +159,7 @@ for (k in 1:length(filter_op)){
 #           str(DF)
 #           print(DF)
 
-        title = sprintf("MD-Workbench Rate iop/s - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+        title = sprintf("MD-Workbench Rate iop/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
         cols = rainbow(len_class, s = 0.5)
         boxplot(x ~ z + y, data = DF,
@@ -182,7 +182,7 @@ for (k in 1:length(filter_op)){
 #           str(DF)
 #           print(DF)
 
-        title = sprintf("MD-Workbench Rate obj/s - Filter %s - %d Processors", filter_op[k], nproc_op[l]);
+        title = sprintf("MD-Workbench Rate obj/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
         cols = rainbow(len_class, s = 0.5)
         boxplot(x ~ z + y, data = DF,
