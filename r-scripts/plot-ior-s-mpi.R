@@ -2,11 +2,6 @@
 
 # R Script for Running IOR
 
-# Options for the input parameters
-
-# 0   test parameters
-# 1   real parameters
-
 # Options for the output parameters
 
 # time
@@ -20,16 +15,9 @@ pdf("figs-ior-s-mpi.pdf") # either save all files in one pdf or the files in spe
 
 d = read.csv("results-ior-s-mpi.csv")
 
-if(args[1] == 0){
-  nproc_op = c(1, 2)
-  size_op = c(200, 600)
-  filter_op   = c("passthrough")
-} else
-{
-  nproc_op = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-  size_op = c(1048576, 2097152, 5242880, 10485760)
-  filter_op   = c("passthrough", "passthrough_ll", "passthrough_fh", "passthrough_hp")
-}
+filter_op     = levels(as.factor(d$filter))
+size_op       = levels(as.factor(d$size))
+nproc_op      = levels(as.factor(d$nproc))
 
 for (k in 1:length(filter_op)){
 
@@ -91,7 +79,7 @@ for (k in 1:length(filter_op)){
         DF = data.frame(
         x = c(read_tmpfs_time, read_fuse_time),
         y = rep(c("READ TMPFS", "READ FUSE"), each = len_bs*len),
-        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
+        z = rep(rep(1:len_bs, each = len), 2), # two categories, tmpfs and fuse
         stringsAsFactors = FALSE
         )
 #        str(DF)
@@ -105,8 +93,8 @@ for (k in 1:length(filter_op)){
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main=title, ylab="Time Read")
-        legend("topright", fill = cols, legend = nproc_op, horiz = F, title="nproc")
+                xaxs = FALSE, main = title, ylab = "Time Read")
+        legend("topright", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
     print (length(read_tmpfs_time))
@@ -120,7 +108,7 @@ for (k in 1:length(filter_op)){
         DF = data.frame(
         x = c(write_tmpfs_time, write_fuse_time),
         y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = len_bs*len),
-        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
+        z = rep(rep(1:len_bs, each = len), 2), # two categories, tmpfs and fuse
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -134,8 +122,8 @@ for (k in 1:length(filter_op)){
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main=title, ylab="Time Write")
-        legend("topright", fill = cols, legend = nproc_op, horiz = F, title="nproc")
+                xaxs = FALSE, main = title, ylab = "Time Write")
+        legend("topright", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
     print (length(write_tmpfs_time))
@@ -149,7 +137,7 @@ for (k in 1:length(filter_op)){
         DF = data.frame(
         x = c(read_tmpfs_tp, read_fuse_tp),
         y = rep(c("READ TMPFS", "READ FUSE"), each = len_bs*len),
-        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
+        z = rep(rep(1:len_bs, each = len), 2), # two categories, tmpfs and fuse
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -163,8 +151,8 @@ for (k in 1:length(filter_op)){
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main=title, ylab="Throughput Read")
-        legend("topleft", fill = cols, legend = nproc_op, horiz = F, title="nproc")
+                xaxs = FALSE, main = title, ylab = "Throughput Read")
+        legend("topleft", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
     print (length(read_tmpfs_tp))
@@ -178,7 +166,7 @@ for (k in 1:length(filter_op)){
         DF = data.frame(
         x = c(write_tmpfs_tp, write_fuse_tp),
         y = rep(c("WRITE TMPFS", "WRITE FUSE"), each = len_bs*len),
-        z = rep(rep(1:len_bs, each=len), 2), # two categories, read and write
+        z = rep(rep(1:len_bs, each = len), 2), # two categories, tmpfs and fuse
         stringsAsFactors = FALSE
         )
     #    str(DF)
@@ -192,8 +180,8 @@ for (k in 1:length(filter_op)){
         boxplot(x ~ z + y, data = DF,
                 at = c(1:(2*len_bs)), col = cols,
                 names = c("tmp", rep("", len_bs-1), "f", rep("", len_bs-1)),
-                xaxs = FALSE, main=title, ylab="Throughput Write")
-        legend("topleft", fill = cols, legend = nproc_op, horiz = F, title="nproc")
+                xaxs = FALSE, main = title, ylab = "Throughput Write")
+        legend("topleft", fill = cols, legend = nproc_op, horiz = F, title = "# Proc")
 
     } else {
     print (length(write_tmpfs_tp))

@@ -20,16 +20,9 @@ pdf("figs-dd.pdf") # either save all files in one pdf or the files in specific p
 
 d = read.csv("results-dd.csv")
 
-if(args[1] == 0){
-  blocksize_op  = c(100, 128, 1000)
-  size_op       = c(30000)
-  filter_op     = c("passthrough")
-} else
-{
-  blocksize_op  = c(10000, 16384, 100000, 131072, 1000000, 1048576)
-  size_op       = c(10485760, 104857600, 1048576000, 10485760000)
-  filter_op     = c("passthrough", "passthrough_ll", "passthrough_fh", "passthrough_hp")
-}
+filter_op     = levels(as.factor(d$filter))
+blocksize_op  = levels(as.factor(d$blocksize))
+size_op       = levels(as.factor(d$size))
 
 for (k in 1:length(filter_op)){
 
@@ -89,8 +82,8 @@ for (k in 1:length(filter_op)){
     #   str(DF)
     #   print(DF)
 
-        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %e bytes", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -111,8 +104,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%e_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %e bytes", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -133,8 +126,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("Filter %s - Size %e bytes", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "read");
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -155,8 +148,8 @@ for (k in 1:length(filter_op)){
     #    str(DF)
     #    print(DF)
 
-        filename = sprintf("%s_%e_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("Filter %s - Size %e bytes", filter_op[k], size_op[j]);
+        filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "write");
+        title = sprintf("Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
