@@ -51,6 +51,7 @@ f_out = 0
 
 files = sys.argv[1:]
 for file in files:
+
     f_in += 1
     data_M["file"] = file
     data_M["options"] = 'ior'
@@ -65,9 +66,10 @@ for file in files:
     # Parse the data for the information inside the result file
 
     f = open(file, "r")
+
+    aux = 0
     for l in f:
 
-        aux = 0
         mw = re.match("read([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mw:
@@ -75,15 +77,15 @@ for file in files:
             data_M["operation"] = 'read'
             out.writerow(data_M)
             f_out += 1
-            aux += 1;
+            aux += 1
 
-        if aux == 0:
-            print("Error processing file", file)
+    if aux == 0:
+        print("Error processing file", file)
 
     f.close()
 
-# print(f_in)
-# print(f_out)
+print(f_in)
+print(f_out)
 
 if f_in != f_out:
     print("Some files were not properly processed!")
@@ -96,8 +98,8 @@ f_out = 0
 
 files = sys.argv[1:]
 for file in files:
+
     f_in += 1
-#    print(file)
     data_M["file"] = file
     data_M["options"] = 'ior'
 
@@ -111,9 +113,10 @@ for file in files:
     # Parse the data for the information inside the result file
 
     f = open(file, "r")
+
+    aux = 0
     for l in f:
 
-        aux = 0
         mr = re.match("write([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mr:
@@ -123,15 +126,15 @@ for file in files:
             f_out += 1
             aux += 1;
 
-        if aux == 0:
-            print("Error processing file", file)
+    if aux == 0:
+        print("Error processing file", file)
 
     f.close()
 
 fd.close()
 
-# print(f_in)
-# print(f_out)
+print(f_in)
+print(f_out)
 
 if f_in != f_out:
     print("Some files were not properly processed!")

@@ -68,9 +68,10 @@ for file in files:
     # Parse the data for the information inside the result file
 
     f = open(file, "r")
+
+    aux = 0
     for l in f:
 
-        aux = 0
         m = re.match("(?P<bytes>[0-9]*) bytes \((?P<MB>[0-9.]+) (kB|MB|GB), (?P<MiB>[0-9.]+) (KiB|MiB|GiB)\) copied, (?P<time>[0-9.]+) s, (?P<tp>[0-9.]+) (kB|MB|GB)/s", l)
         if m:
             data_M.update(m.groupdict())
@@ -96,8 +97,8 @@ for file in files:
             f_out += 1
             aux += 1
 
-        if aux == 0:
-            print("Error processing file", file)
+    if aux == 0:
+        print("Error processing file", file)
 
     f.close()
 
