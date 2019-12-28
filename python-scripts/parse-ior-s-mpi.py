@@ -14,7 +14,7 @@ filename = "results-ior-s-mpi.csv"
 # Open the output file
 
 fd = open(filename, "w")
-fields = ["file", "time", "tp-MiB", "tp-MB", "filter", "dir_mem", "iter", "size", "operation", "options", "nproc", "size", "machine"]
+fields = ["file", "time", "tp_MiB", "tp_MB", "filter", "dir_mem", "iter", "size", "operation", "options", "nproc", "size", "machine"]
 out = csv.DictWriter(fd, fieldnames=fields, delimiter=',', quoting=csv.QUOTE_MINIMAL)
 out.writeheader()
 
@@ -71,11 +71,11 @@ for file in files:
     aux = 0
     for l in f:
 
-        mw = re.match("read([ ]+)(?P<tp-MiB>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
+        mw = re.match("read([ ]+)(?P<tp_MiB>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mw:
             data_M.update(mw.groupdict())
-            data_M["tp-MB"] = float(m[1])*1.048
+            data_M["tp_MB"] = float(mw[2])*1.048
             data_M["operation"] = 'read'
             out.writerow(data_M)
             f_out += 1
@@ -119,10 +119,11 @@ for file in files:
     aux = 0
     for l in f:
 
-        mr = re.match("write([ ]+)(?P<tp>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
+        mr = re.match("write([ ]+)(?P<tp_MiB>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)(?P<time>[0-9.]*)([ ]+)([0-9.]*)([ ]+)([0-9.]*)([ ]+)0([ ]+)", l)
 
         if mr:
             data_M.update(mr.groupdict())
+            data_M["tp_MB"] = float(mr[2])*1.048
             data_M["operation"] = 'write'
             out.writerow(data_M)
             f_out += 1
