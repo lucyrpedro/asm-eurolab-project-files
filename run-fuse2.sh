@@ -21,87 +21,87 @@ mkdir -p results-database/
 mkdir -p results-figures/
 mkdir -p out-files/
 
-## Running DD ###
-
-cp -f bash-scripts/run-dd.sh ../libfuse/build/
-cd ../libfuse/build/
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running dd'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-# Running the filters with a Bash script
-
-./run-dd.sh tmpfs fusexmp $2
-./run-dd.sh fuse fusexmp $2
-./run-dd.sh tmpfs fusexmp_fh $2
-./run-dd.sh fuse fusexmp_fh $2
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
-
-cd out-dd
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-dd.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
-
-# Cleaning the files
-
-cd ..
-rm -rf out-dd
-rm run-dd.sh
-
-## Running MD ###
-
-# MD needs to be update to run all filters
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running md'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-cd ../../asm-eurolab-project-files
-cp -f bash-scripts/run-md.sh ../libfuse/build/
-cp -f benchmarks/md-workbench ../libfuse/build/
-
-cd ../libfuse/build/
-
-# Running the filters with a Bash script
-
-./run-md.sh tmpfs fusexmp $2
-./run-md.sh fuse fusexmp $2
-./run-md.sh tmpfs fusexmp_fh $2
-./run-md.sh fuse fusexmp_fh $2
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
-
-cd out-md
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-md.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
-
-# Cleaning the files
-
-cd ..
-rm -rf out-md
-rm run-md.sh
-rm md-workbench
-
-##### Install ior and then copy the executable!!!
-
-# IOR needs to be updated to include all filters
-
-# IOR and IOR-r need the same parameters so that parse and plot will work
+# ## Running DD ###
+#
+# cp -f bash-scripts/run-dd.sh ../libfuse/build/
+# cd ../libfuse/build/
+#
+# echo 'xxxxxxxxxxxxxxxxxx'
+# echo 'Running dd'
+# echo 'xxxxxxxxxxxxxxxxxx'
+#
+# # Running the filters with a Bash script
+#
+# ./run-dd.sh tmpfs fusexmp $2
+# ./run-dd.sh fuse fusexmp $2
+# ./run-dd.sh tmpfs fusexmp_fh $2
+# ./run-dd.sh fuse fusexmp_fh $2
+#
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
+#
+# cd out-dd
+#
+# # Running the Python script to parse the results to a csv file
+#
+# python3 parse-dd.py *.txt
+#
+# # Saving results and intermediate files
+#
+# cp -f results-dd.csv ../../../asm-eurolab-project-files/results-database/
+# cp -rf ../out-dd/ ../../../asm-eurolab-project-files/out-files/
+#
+# # Cleaning the files
+#
+# cd ..
+# rm -rf out-dd
+# rm run-dd.sh
+#
+# ## Running MD ###
+#
+# # MD needs to be update to run all filters
+#
+# echo 'xxxxxxxxxxxxxxxxxx'
+# echo 'Running md'
+# echo 'xxxxxxxxxxxxxxxxxx'
+#
+# cd ../../asm-eurolab-project-files
+# cp -f bash-scripts/run-md.sh ../libfuse/build/
+# cp -f benchmarks/md-workbench ../libfuse/build/
+#
+# cd ../libfuse/build/
+#
+# # Running the filters with a Bash script
+#
+# ./run-md.sh tmpfs fusexmp $2
+# ./run-md.sh fuse fusexmp $2
+# ./run-md.sh tmpfs fusexmp_fh $2
+# ./run-md.sh fuse fusexmp_fh $2
+#
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
+#
+# cd out-md
+#
+# # Running the Python script to parse the results to a csv file
+#
+# python3 parse-md.py *.txt
+#
+# # Saving results and intermediate files
+#
+# cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
+# cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
+#
+# # Cleaning the files
+#
+# cd ..
+# rm -rf out-md
+# rm run-md.sh
+# rm md-workbench
+#
+# ##### Install ior and then copy the executable!!!
+#
+# # IOR needs to be updated to include all filters
+#
+# # IOR and IOR-r need the same parameters so that parse and plot will work
 
 echo 'xxxxxxxxxxxxxxxxxx'
 echo 'Running ior'

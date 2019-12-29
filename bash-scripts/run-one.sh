@@ -1,13 +1,24 @@
 #!/bin/bash
 
-# Bash Script for Running IOR
+# Bash Script for Running IOR - One file
+
+# mpiexec -n 14 ./ior -t 1048576 -b 1048576 -w -r -s 2142 -o mnt/dev/shm/testfile
+# mpiexec -n $1 ./ior -t $2 -b $2 -w -r -s 2142 -o mnt/dev/shm/testfile
 
 # Options: Parameter $1
+
+# Number of processors
+
+# Options: Parameter $2
+
+# File Size
+
+# Options: Parameter $3
 
 # tmpfs (/dev/shm/)
 # fuse (mnt-fuse/dev/shm/)
 
-# Options: Parameter $2
+# Options: Parameter $4
 
 # passthrough
 # passthrough_ll
@@ -19,8 +30,8 @@
 spack load -r openmpi
 spack load gcc
 
-dir=$1
-filter=$2
+dir=$3
+filter=$4
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -35,7 +46,7 @@ fi
 
 rm -rf /dev/shm/testfile
 rm -rf out
-mkdir -p out-ior-s-mpi
+mkdir -p out-dd
 mkdir -p mnt-fuse
 
 mount="mnt-fuse"
@@ -52,19 +63,6 @@ else
     ./example/$filter /dev/shm mnt-fuse/ &
   else ./example/$filter mnt-fuse/
   fi
-fi
-
-if [ $3 == 'test' ]
-then
-  nproc_vec=(1 2)
-  size_vec=(200 600)
-  file_size=(5000)
-  conv=(1)
-else
-  nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-  size_vec=(1048576 2097152 5242880 10485760)
-  file_size=(30000)
-  conv=(1024)
 fi
 
 function run_file(){
@@ -85,13 +83,7 @@ function run_file(){
 
 }
 
-for i in {1..1}; do
-  for j in "${size_vec[@]}"; do
-    for k in "${nproc_vec[@]}"; do
-      run_file $i $j $k $file_size $conv
-    done
-  done
-done
+run_file 1 $1 $2 30000 1024
 
 if grep -qs "$mount" /proc/mounts
 then
