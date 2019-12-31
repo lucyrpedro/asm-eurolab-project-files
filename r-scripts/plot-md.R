@@ -74,29 +74,36 @@ for (k in 1:length(filter_op)){
         len_class = length(isize_op)*length(psize_op);     # number of options for the classes
         len = length(data_rtime)/len_class;                # number of run
 
-        DF = data.frame(
-        x = c(data_rtime),
-        y = rep(c(1:1:len_class), each = len),
-        z = rep(rep(1, each = len*len_class), 1), # read
-        stringsAsFactors = FALSE
-        )
-#           str(DF)
-#           print(DF)
+        if (length(data_rtime) == len_class){
 
-        title = sprintf("MD-Workbench Time Read - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+            DF = data.frame(
+            x = c(data_rtime),
+            y = rep(c(1:1:len_class), each = len),
+            z = rep(rep(1, each = len*len_class), 1), # read
+            stringsAsFactors = FALSE
+            )
+    #           str(DF)
+    #           print(DF)
 
-        cols = rainbow(len_class, s = 0.5)
-        boxplot(x ~ z + y, data = DF,
-                at = c(1:(len_class)), col = cols,
-                names = c("Read", rep("", len_class-1)),
-                xaxs = FALSE, main=title, ylab="Time Read")
-#        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            title = sprintf("MD-Workbench Time Read - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
 
-        if (nproc_op[l] == 1){
+            cols = rainbow(len_class, s = 0.5)
+            boxplot(x ~ z + y, data = DF,
+                    at = c(1:(len_class)), col = cols,
+                    names = c("Read", rep("", len_class-1)),
+                    xaxs = FALSE, main=title, ylab="Time Read")
+    #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
-            plot.new();
-            legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            if (nproc_op[l] == 1){
 
+                plot.new();
+                legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+            }
+
+        } else {
+        print (length(data_rtime))
+        print (len_class)
         }
 
         # TIME - WRITE
@@ -104,92 +111,120 @@ for (k in 1:length(filter_op)){
         len_class = length(isize_op)*length(psize_op);     # number of options for the classes
         len = length(data_rtime)/len_class;                # number of run
 
-        DF = data.frame(
-        x = c(data_wtime),
-        y = rep(c(1:1:len_class), each = len),
-        z = rep(rep(1, each = len*len_class), 1), # write
-        stringsAsFactors = FALSE
-        )
-#           str(DF)
-#           print(DF)
+        if (length(data_wtime) == len_class){
 
-        title = sprintf("MD-Workbench Time Write - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+            DF = data.frame(
+            x = c(data_wtime),
+            y = rep(c(1:1:len_class), each = len),
+            z = rep(rep(1, each = len*len_class), 1), # write
+            stringsAsFactors = FALSE
+            )
+    #           str(DF)
+    #           print(DF)
 
-        cols = rainbow(len_class, s = 0.5)
-        boxplot(x ~ z + y, data = DF,
-                at = c(1:(len_class)), col = cols,
-                names = c("Write", rep("", len_class-1)),
-                xaxs = FALSE, main=title, ylab="Time Write")
-#        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            title = sprintf("MD-Workbench Time Write - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+
+            cols = rainbow(len_class, s = 0.5)
+            boxplot(x ~ z + y, data = DF,
+                    at = c(1:(len_class)), col = cols,
+                    names = c("Write", rep("", len_class-1)),
+                    xaxs = FALSE, main=title, ylab="Time Write")
+    #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+        } else {
+        print (length(data_wtime))
+        print (len_class)
+        }
 
         # TOTAL TIME
 
         len_class = length(isize_op)*length(psize_op);     # number of options for the classes
         len = length(data_ttime)/len_class;                # number of run
 
-        DF = data.frame(
-        x = c(data_ttime),
-        y = rep(c(1:1:len_class), each = len),
-        z = rep(rep(1, each = len*len_class), 1), # write
-        stringsAsFactors = FALSE
-        )
-        #           str(DF)
-        #           print(DF)
+        if (length(data_ttime) == len_class){
 
-        title = sprintf("MD-Workbench Total Time - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+            DF = data.frame(
+            x = c(data_ttime),
+            y = rep(c(1:1:len_class), each = len),
+            z = rep(rep(1, each = len*len_class), 1), # write
+            stringsAsFactors = FALSE
+            )
+            #           str(DF)
+            #           print(DF)
 
-        cols = rainbow(len_class, s = 0.5)
-        boxplot(x ~ z + y, data = DF,
-                at = c(1:(len_class)), col = cols,
-                names = c("Time", rep("", len_class-1)),
-                xaxs = FALSE, main=title, ylab="Total Time")
-        #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            title = sprintf("MD-Workbench Total Time - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+
+            cols = rainbow(len_class, s = 0.5)
+            boxplot(x ~ z + y, data = DF,
+                    at = c(1:(len_class)), col = cols,
+                    names = c("Time", rep("", len_class-1)),
+                    xaxs = FALSE, main=title, ylab="Total Time")
+            #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+        } else {
+        print (length(data_ttime))
+        print (len_class)
+        }
 
         # RATE - IOPS
 
         len_class = length(isize_op)*length(psize_op);     # number of options for the classes
         len = length(data_rate_iops)/len_class;                # number of run
 
-        DF = data.frame(
-        x = c(data_rate_iops),
-        y = rep(c(1:1:len_class), each = len),
-        z = rep(rep(1, each = len*len_class), 1), # rate iops
-        stringsAsFactors = FALSE
-        )
-#           str(DF)
-#           print(DF)
+        if (length(data_rate_iops) == len_class){
 
-        title = sprintf("MD-Workbench Rate iop/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+            DF = data.frame(
+            x = c(data_rate_iops),
+            y = rep(c(1:1:len_class), each = len),
+            z = rep(rep(1, each = len*len_class), 1), # rate iops
+            stringsAsFactors = FALSE
+            )
+    #           str(DF)
+    #           print(DF)
 
-        cols = rainbow(len_class, s = 0.5)
-        boxplot(x ~ z + y, data = DF,
-                at = c(1:(len_class)), col = cols,
-                names = c("Rate iop/s", rep("", len_class-1)),
-                xaxs = FALSE, main=title, ylab="Rate iop/s")
-#        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            title = sprintf("MD-Workbench Rate iop/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+
+            cols = rainbow(len_class, s = 0.5)
+            boxplot(x ~ z + y, data = DF,
+                    at = c(1:(len_class)), col = cols,
+                    names = c("Rate iop/s", rep("", len_class-1)),
+                    xaxs = FALSE, main=title, ylab="Rate iop/s")
+    #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+        } else {
+        print (length(data_rate_iops))
+        print (len_class)
+        }
 
         # RATE - OBJS
 
         len_class = length(isize_op)*length(psize_op);     # number of options for the classes
         len = length(data_rate_objs)/len_class;                # number of run
 
-        DF = data.frame(
-        x = c(data_rate_objs),
-        y = rep(c(1:1:len_class), each = len),
-        z = rep(rep(1, each = len*len_class), 1), # rate objs
-        stringsAsFactors = FALSE
-        )
-#           str(DF)
-#           print(DF)
+        if (length(data_rate_objs) == len_class){
 
-        title = sprintf("MD-Workbench Rate obj/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+            DF = data.frame(
+            x = c(data_rate_objs),
+            y = rep(c(1:1:len_class), each = len),
+            z = rep(rep(1, each = len*len_class), 1), # rate objs
+            stringsAsFactors = FALSE
+            )
+    #           str(DF)
+    #           print(DF)
 
-        cols = rainbow(len_class, s = 0.5)
-        boxplot(x ~ z + y, data = DF,
-                at = c(1:(len_class)), col = cols,
-                names = c("Rate obj/s", rep("", len_class-1)),
-                xaxs = FALSE, main=title, ylab="Rate obj/s")
-#        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+            title = sprintf("MD-Workbench Rate obj/s - Filter %s - %s Processors", filter_op[k], nproc_op[l]);
+
+            cols = rainbow(len_class, s = 0.5)
+            boxplot(x ~ z + y, data = DF,
+                    at = c(1:(len_class)), col = cols,
+                    names = c("Rate obj/s", rep("", len_class-1)),
+                    xaxs = FALSE, main=title, ylab="Rate obj/s")
+    #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
+
+        } else {
+        print (length(data_rate_objs))
+        print (len_class)
+        }
 
     }
 

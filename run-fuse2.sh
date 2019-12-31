@@ -108,7 +108,6 @@ echo 'Running ior'
 echo 'xxxxxxxxxxxxxxxxxx'
 
 # cd ../../asm-eurolab-project-files
-# cd asm-eurolab-project-files
 cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
 cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
 cp benchmarks/ior ../libfuse/build/
