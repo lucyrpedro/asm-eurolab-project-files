@@ -56,39 +56,37 @@ mkdir -p out-files/
 # rm -rf out-dd
 # rm run-dd.sh
 #
-# ## Running MD ###
-#
-# # MD needs to be update to run all filters
-#
-# echo 'xxxxxxxxxxxxxxxxxx'
-# echo 'Running md'
-# echo 'xxxxxxxxxxxxxxxxxx'
-#
+## Running MD ###
+
+echo 'xxxxxxxxxxxxxxxxxx'
+echo 'Running md'
+echo 'xxxxxxxxxxxxxxxxxx'
+
 # cd ../../asm-eurolab-project-files
-# cp -f bash-scripts/run-md.sh ../libfuse/build/
-# cp -f benchmarks/md-workbench ../libfuse/build/
-#
-# cd ../libfuse/build/
-#
-# # Running the filters with a Bash script
-#
-# ./run-md.sh tmpfs fusexmp $2
-# ./run-md.sh fuse fusexmp $2
-# ./run-md.sh tmpfs fusexmp_fh $2
-# ./run-md.sh fuse fusexmp_fh $2
-#
-# cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
-#
-# cd out-md
-#
-# # Running the Python script to parse the results to a csv file
-#
-# python3 parse-md.py *.txt
-#
-# # Saving results and intermediate files
-#
-# cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
-# cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
+cp -f bash-scripts/run-md.sh ../libfuse/build/
+cp -f benchmarks/md-workbench ../libfuse/build/
+
+cd ../libfuse/build/
+
+# Running the filters with a Bash script
+
+./run-md.sh tmpfs fusexmp $2
+./run-md.sh fuse fusexmp $2
+./run-md.sh tmpfs fusexmp_fh $2
+./run-md.sh fuse fusexmp_fh $2
+
+cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
+
+cd out-md
+
+# Running the Python script to parse the results to a csv file
+
+python3 parse-md.py *.txt
+
+# Saving results and intermediate files
+
+cp -f results-md.csv ../../../asm-eurolab-project-files/results-database/
+cp -rf ../out-md/ ../../../asm-eurolab-project-files/out-files/
 #
 # # Cleaning the files
 #
@@ -103,42 +101,42 @@ mkdir -p out-files/
 #
 # # IOR and IOR-r need the same parameters so that parse and plot will work
 
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running ior'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-# cd ../../asm-eurolab-project-files
-cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
-cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
-cp benchmarks/ior ../libfuse/build/
-
-cd ../libfuse/build/
-
-## Running IOR-s-mpi
-
-echo 'xxxxxxxxxxxxxxxxxx'
-echo 'Running ior-segments-mpi'
-echo 'xxxxxxxxxxxxxxxxxx'
-
-# Running the filters with a Bash script
-
-./run-ior-s-mpi.sh tmpfs fusexmp $2
-./run-ior-s-mpi.sh fuse fusexmp $2
-./run-ior-s-mpi.sh tmpfs fusexmp_fh $2
-./run-ior-s-mpi.sh fuse fusexmp_fh $2
-
-cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
-
-cd out-ior-s-mpi
-
-# Running the Python script to parse the results to a csv file
-
-python3 parse-ior-s-mpi.py *.txt
-
-# Saving results and intermediate files
-
-cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
-cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
+# echo 'xxxxxxxxxxxxxxxxxx'
+# echo 'Running ior'
+# echo 'xxxxxxxxxxxxxxxxxx'
+#
+# # cd ../../asm-eurolab-project-files
+# cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
+# cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
+# cp benchmarks/ior ../libfuse/build/
+#
+# cd ../libfuse/build/
+#
+# ## Running IOR-s-mpi
+#
+# echo 'xxxxxxxxxxxxxxxxxx'
+# echo 'Running ior-segments-mpi'
+# echo 'xxxxxxxxxxxxxxxxxx'
+#
+# # Running the filters with a Bash script
+#
+# ./run-ior-s-mpi.sh tmpfs fusexmp $2
+# ./run-ior-s-mpi.sh fuse fusexmp $2
+# ./run-ior-s-mpi.sh tmpfs fusexmp_fh $2
+# ./run-ior-s-mpi.sh fuse fusexmp_fh $2
+#
+# cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi
+#
+# cd out-ior-s-mpi
+#
+# # Running the Python script to parse the results to a csv file
+#
+# python3 parse-ior-s-mpi.py *.txt
+#
+# # Saving results and intermediate files
+#
+# cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
+# cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 
 ## Running IOR-s-mpi
 
@@ -170,10 +168,10 @@ cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
 #
 # # Cleaning the files
 
-cd ..
-rm -rf out-ior-s-mpi-r
-rm -rf run-ior-s-mpi.sh
-rm ior
+# cd ..
+# rm -rf out-ior-s-mpi-r
+# rm -rf run-ior-s-mpi.sh
+# rm ior
 
 # echo 'xxxxxxxxxxxxxxxxxx'
 # echo 'Updating Git'
