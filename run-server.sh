@@ -227,14 +227,14 @@ else
 
   # Running the filters with a Bash script
 
-  ./run-md.sh tmpfs passthrough $2
-  ./run-md.sh fuse passthrough $2
-  ./run-md.sh tmpfs passthrough_ll $2
+  # ./run-md.sh tmpfs passthrough $2
+  # ./run-md.sh fuse passthrough $2
+  # ./run-md.sh tmpfs passthrough_ll $2
   ./run-md.sh fuse passthrough_ll $2
-  ./run-md.sh tmpfs passthrough_fh $2
+  # ./run-md.sh tmpfs passthrough_fh $2
   ./run-md.sh fuse passthrough_fh $2
-  ./run-md.sh tmpfs passthrough_hp $2
-  ./run-md.sh fuse passthrough_hp $2
+  # ./run-md.sh tmpfs passthrough_hp $2
+  # ./run-md.sh fuse passthrough_hp $2
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
 
