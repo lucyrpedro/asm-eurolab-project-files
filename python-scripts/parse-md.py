@@ -97,8 +97,8 @@ for file in files:
 
 fd.close()
 
-# print(f_in)
-# print(f_out)
+print(f_in)
+print(f_out/2)
 
 if f_in != f_out/2:
     print("Some files were not properly processed!")
