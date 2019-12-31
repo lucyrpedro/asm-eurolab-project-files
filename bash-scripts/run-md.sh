@@ -82,7 +82,6 @@ function run_file(){
   then
     echo mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} > out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
     mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} >> out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
-    rm -rf /dev/shm/testfile
   fi
 
 }
@@ -91,7 +90,8 @@ for i in {1..1}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
-      run_file $i $j $k $l
+        run_file $i $j $k $l
+        rm -rf /dev/shm/testfile
       done
     done
   done
