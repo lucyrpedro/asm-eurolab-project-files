@@ -88,7 +88,7 @@ function run_file(){
 
 }
 
-for i in {1..10}; do
+for i in {1..4}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do
