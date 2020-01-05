@@ -62,12 +62,12 @@ then
   conv=(1)
 else
   nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-  # isize_vec=(200000 500000 1000000)
+  # isize_vec=(200000 500000 1000000) # working for passthrough and passthrough_hp
   # psize_vec=(1000000 3000000 5000000 10000000)
-  # isize_vec=(20000 50000 100000)
-  # psize_vec=(100000 300000 500000 1000000)
-  isize_vec=(2000 5000 10000)
-  psize_vec=(10000 30000 50000 100000)
+  isize_vec=(20000 50000 100000) # working for passthrough_fh
+  psize_vec=(100000 300000 500000 1000000)
+  # isize_vec=(2000 5000 10000) # attempt to passthrough_ll => too many files
+  # psize_vec=(10000 30000 50000 100000)
 fi
 
 function run_file(){
@@ -88,7 +88,7 @@ function run_file(){
 
 }
 
-for i in {1..1}; do
+for i in {1..10}; do
   for j in "${isize_vec[@]}"; do
     for k in "${psize_vec[@]}"; do
       for l in "${nproc_vec[@]}"; do

@@ -91,7 +91,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Read", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Time Read")
+                    xaxs = FALSE, main = title, ylab = "Time Read (in seconds)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
             if (nproc_op[l] == 1){
@@ -121,7 +121,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Write", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Time Write")
+                    xaxs = FALSE, main = title, ylab = "Time Write (in seconds)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
         # TOTAL TIME
@@ -144,7 +144,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Time", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Total Time")
+                    xaxs = FALSE, main = title, ylab = "Total Time (in seconds)")
             #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
@@ -169,7 +169,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Rate iop/s", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Rate iop/s")
+                    xaxs = FALSE, main = title, ylab = "Rate (in iop/s)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
@@ -194,7 +194,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Rate obj/s", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Rate obj/s")
+                    xaxs = FALSE, main = title, ylab = "Rate (in obj/s)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
@@ -268,7 +268,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Read", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Time Read")
+                    xaxs = FALSE, main = title, ylab = "Time Read (in seconds)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
             if (nproc_op[l] == 1){
@@ -298,7 +298,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Write", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Time Write")
+                    xaxs = FALSE, main = title, ylab = "Time Write (in seconds)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
         # TOTAL TIME
@@ -321,7 +321,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Time", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Total Time")
+                    xaxs = FALSE, main = title, ylab = "Total Time (in seconds)")
             #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
@@ -346,7 +346,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Rate iop/s", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Rate iop/s")
+                    xaxs = FALSE, main = title, ylab = "Rate (in iop/s)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
@@ -371,7 +371,7 @@ for (k in 1:length(filter_op)){
             boxplot(x ~ z + y, data = DF,
                     at = c(1:(len_class)), col = cols,
                     names = c("Rate obj/s", rep("", len_class-1)),
-                    xaxs = FALSE, main = title, ylab = "Rate obj/s")
+                    xaxs = FALSE, main = title, ylab = "Rate (in obj/s)")
     #        legend("center", fill = cols, legend = legend_vet, horiz = F, title="Class")
 
 
