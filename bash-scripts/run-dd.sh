@@ -108,9 +108,6 @@ function run_file(){
   fi
 }
 
-# blocksize="4 16 100"		￼#blocksize="4 16 100"
-￼# for j in $blocksize ; do
-
 for i in {1..10}; do      # 10
   for j in $blocksize_vec ; do     # 7
     for k in $filesize_vec ; do   # 2
