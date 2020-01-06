@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# Bash Script for cloning the files and run the tests
+# Bash Script for cloning the files and run the tests wuth FUSE3
 
 # Options: Parameter $1
 
@@ -11,20 +11,20 @@
 
 # run      Number of runs
 
-git clone https://github.com/lucyrpedro/asm-eurolab-project-files.git
+## Copying files ###
 
-cd asm-eurolab-project-files/
+git clone https://github.com/lucyrpedro/asm-eurolab-project-files.git
 
 ./prepare.sh
 
-cp /home/pedro/ior-3.2.1/build/src/ior benchmarks/
-cp /home/pedro/md-workbench/build/src/md-workbench benchmarks/
+echo 'Copying ior'
+cp /home/pedro/ior-3.2.1/build/src/ior asm-eurolab-project-files/benchmarks
+
+echo 'Copying md-benchwork'
+cp /home/pedro/md-workbench/build/src/md-workbench asm-eurolab-project-files/benchmarks
 
 ## Running the tests ###
 
-if [ $1 == 'test' ]
-then
-  ./run-server.sh clean $1 $2
-else
-  ./run-server.sh clean none $2
-fi
+cd asm-eurolab-project-files/
+
+./run-server.sh clean $1 $2
