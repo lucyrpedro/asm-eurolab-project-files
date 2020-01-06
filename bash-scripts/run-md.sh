@@ -62,11 +62,12 @@ then
   psize_vec="1000"
   conv=(1)
 else
-  nproc_vec="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
-  # isize_vec="200000 500000 1000000" # working for passthrough and passthrough_hp
-  # psize_vec="1000000 3000000 5000000 10000000"
-  isize_vec="20000 50000 100000" # working for passthrough_fh
-  psize_vec="100000 300000 500000 1000000"
+  nproc_vec="1 2 16"
+  nproc_vec="1 2 16"
+  isize_vec="200000 1000000" # working for passthrough and passthrough_hp
+  psize_vec="1000000 10000000"
+  # isize_vec="20000 50000 100000" # working for passthrough_fh
+  # psize_vec="100000 300000 500000 1000000"
   # isize_vec="2000 5000 10000" # attempt to passthrough_ll => too many files
   # psize_vec="10000 30000 50000 100000"
 fi

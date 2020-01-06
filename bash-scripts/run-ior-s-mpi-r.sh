@@ -21,6 +21,7 @@ spack load gcc
 
 dir=$1
 filter=$2
+run=$4
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -35,7 +36,7 @@ fi
 
 rm -rf /dev/shm/testfile
 rm -rf out
-mkdir -p out-ior-s-mpi-r
+mkdir -p out-ior-s-mpi
 mkdir -p mnt-fuse
 
 mount="mnt-fuse"
@@ -56,15 +57,17 @@ fi
 
 if [ $3 == 'test' ]
 then
-  nproc_vec=(1 2)
-  size_vec=(200 600)
-  file_size=(5000)
-  conv=(1)
+  nproc_vec="1 2"
+  size_vec="200 600"
+  file_size="5000"
+  conv="1"
 else
-  nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-  size_vec=(1048576 2097152 5242880 10485760)
-  file_size=30000
-  conv=(1024)
+  # nproc_vec="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
+  # size_vec="1048576 2097152 5242880 10485760"
+  nproc_vec="1 2 16"
+  size_vec="1048576 10485760"
+  file_size="30000"   # changed from 30000 to try to make fuse2 works
+  conv="1024"
 fi
 
 function run_file(){
@@ -76,18 +79,18 @@ function run_file(){
 
   segments=$(( ${filesize}/((${size}/${conv_aux}/${conv_aux})*${nproc}) ))
 
-  file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
+  file=out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
    then
-     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
-     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} >> out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} >> out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }
 
-for i in {1..10}; do
-  for j in "${size_vec[@]}"; do
-    for k in "${nproc_vec[@]}"; do
+for i in $(seq 1 $run) ; do
+  for j in $size_vec; do
+    for k in $nproc_vec; do
       run_file $i $j $k $file_size $conv
     done
   done

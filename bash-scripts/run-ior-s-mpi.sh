@@ -62,8 +62,10 @@ then
   file_size="5000"
   conv="1"
 else
-  nproc_vec="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
-  size_vec="1048576 2097152 5242880 10485760"
+  # nproc_vec="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
+  # size_vec="1048576 2097152 5242880 10485760"
+  nproc_vec="1 2 16"
+  size_vec="1048576 10485760"
   file_size="30000"   # changed from 30000 to try to make fuse2 works
   conv="1024"
 fi
