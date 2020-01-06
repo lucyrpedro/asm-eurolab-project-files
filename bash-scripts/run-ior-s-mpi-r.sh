@@ -36,7 +36,7 @@ fi
 
 rm -rf /dev/shm/testfile
 rm -rf out
-mkdir -p out-ior-s-mpi
+mkdir -p out-ior-s-mpi-r
 mkdir -p mnt-fuse
 
 mount="mnt-fuse"
@@ -79,11 +79,11 @@ function run_file(){
 
   segments=$(( ${filesize}/((${size}/${conv_aux}/${conv_aux})*${nproc}) ))
 
-  file=out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt
+  file=out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
    then
-     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
-     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} >> out-ior-s-mpi/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     echo mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} > out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
+     mpiexec -n ${nproc} ./ior -t ${size} -b ${size} -w -r -z -s ${segments} -o ${test_dir} >> out-ior-s-mpi-r/${filter}-${dir}-${run}-${size}-${nproc}.txt 2>&1
   fi
 
 }
