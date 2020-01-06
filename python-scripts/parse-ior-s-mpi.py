@@ -136,8 +136,8 @@ for file in files:
 
 fd.close()
 
-print(f_in)
-print(f_out)
+# print(f_in)
+# print(f_out)
 
 if f_in != f_out:
     print("Some files were not properly processed!")

@@ -28,14 +28,14 @@ echo 'xxxxxxxxxxxxxxxxxx'
 
 # Running the filters with a Bash script
 
-./run-dd.sh tmpfs passthrough $2
-./run-dd.sh fuse passthrough $2
-./run-dd.sh tmpfs passthrough_ll $2
-./run-dd.sh fuse passthrough_ll $2
-./run-dd.sh tmpfs passthrough_fh $2
-./run-dd.sh fuse passthrough_fh $2
-./run-dd.sh tmpfs passthrough_hp $2
-./run-dd.sh fuse passthrough_hp $2
+./run-dd.sh tmpfs passthrough $2 10
+./run-dd.sh fuse passthrough $2 9
+./run-dd.sh tmpfs passthrough_ll $2 8
+./run-dd.sh fuse passthrough_ll $2 7
+./run-dd.sh tmpfs passthrough_fh $2 6
+./run-dd.sh fuse passthrough_fh $2 5
+./run-dd.sh tmpfs passthrough_hp $2 4
+./run-dd.sh fuse passthrough_hp $2 3
 
 cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd
 cp -f ../../asm-eurolab-project-files/r-scripts/plot-dd.R out-dd
