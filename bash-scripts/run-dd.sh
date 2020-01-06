@@ -80,11 +80,11 @@ fi
 
 if [ $3 == 'test' ]
 then
-  blocksize_vec=(100 128 1000)
-  filesize_vec=(30000)
+  blocksize_vec="100 128 1000"
+  filesize_vec="30000"
 else
-  blocksize_vec=(10000 16384 100000 131072 1000000 1048576)
-  filesize_vec=(10485760 104857600 1048576000 10485760000)
+  blocksize_vec="10000 16384 100000 131072 1000000 1048576"
+  filesize_vec="10485760 104857600 1048576000 10485760000"
 fi
 
 function run_file(){
@@ -108,9 +108,12 @@ function run_file(){
   fi
 }
 
+#blocksize="4 16 100"		￼#blocksize="4 16 100"
+￼# for j in $blocksize ; do
+
 for i in {1..10}; do      # 10
-  for j in "${blocksize_vec[@]}"; do     # 7
-    for k in "${filesize_vec[@]}"; do   # 2
+  for j in ${blocksize_vec}; do     # 7
+    for k in ${filesize_vec}; do   # 2
       run_file $i $j $k
     done
   done
