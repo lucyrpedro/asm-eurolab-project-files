@@ -12,4 +12,4 @@ cd asm-eurolab-project-files/
 
 ## Running the tests ###
 
-./run-local.sh clean test
+./run-local.sh clean test 3

@@ -21,6 +21,7 @@ spack load gcc
 
 dir=$1
 filter=$2
+run=$4
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -56,18 +57,18 @@ fi
 
 if [ $3 == 'test' ]
 then
-  nproc_vec=(1 2)
-  isize_vec=(200 500)
-  psize_vec=(1000)
+  nproc_vec="1 2"
+  isize_vec="200 500"
+  psize_vec="1000"
   conv=(1)
 else
-  nproc_vec=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16)
-  # isize_vec=(200000 500000 1000000) # working for passthrough and passthrough_hp
-  # psize_vec=(1000000 3000000 5000000 10000000)
-  isize_vec=(20000 50000 100000) # working for passthrough_fh
-  psize_vec=(100000 300000 500000 1000000)
-  # isize_vec=(2000 5000 10000) # attempt to passthrough_ll => too many files
-  # psize_vec=(10000 30000 50000 100000)
+  nproc_vec="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
+  # isize_vec="200000 500000 1000000" # working for passthrough and passthrough_hp
+  # psize_vec="1000000 3000000 5000000 10000000"
+  isize_vec="20000 50000 100000" # working for passthrough_fh
+  psize_vec="100000 300000 500000 1000000"
+  # isize_vec="2000 5000 10000" # attempt to passthrough_ll => too many files
+  # psize_vec="10000 30000 50000 100000"
 fi
 
 function run_file(){
@@ -88,10 +89,10 @@ function run_file(){
 
 }
 
-for i in {1..4}; do
-  for j in "${isize_vec[@]}"; do
-    for k in "${psize_vec[@]}"; do
-      for l in "${nproc_vec[@]}"; do
+for i in $(seq 1 $run) ; do
+  for j in $isize_vec; do
+    for k in $psize_vec; do
+      for l in $nproc_vec; do
         run_file $i $j $k $l
         rm -rf /dev/shm/testfile
       done

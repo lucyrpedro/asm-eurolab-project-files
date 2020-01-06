@@ -109,7 +109,6 @@ function run_file(){
   fi
 }
 
-# for i in {1..10}; do      # 10
 for i in $(seq 1 $run) ; do
   for j in $blocksize_vec ; do     # 7
     for k in $filesize_vec ; do   # 2
