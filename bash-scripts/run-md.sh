@@ -23,6 +23,8 @@ dir=$1
 filter=$2
 nrun=$4
 
+echo $nrun
+
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
 fi
@@ -36,23 +38,6 @@ fi
 
 rm -rf out
 mkdir -p out-md
-mkdir -p mnt-fuse
-
-mount="mnt-fuse"
-
-if grep -qs "$mount" /proc/mounts; then
-  echo "The system was not supposed to be mounted! Unmounting and mounting again!"
-  fusermount -u mnt-fuse
-  if [ $filter == 'passthrough_hp' ]; then
-    ./example/$filter /dev/shm mnt-fuse/ &
-  else ./example/$filter mnt-fuse/
-  fi
-else
-  if [ $filter == 'passthrough_hp' ]; then
-    ./example/$filter /dev/shm mnt-fuse/ &
-  else ./example/$filter mnt-fuse/
-  fi
-fi
 
 if [ $3 == 'test' ]
 then
@@ -80,6 +65,24 @@ function run_file(){
   isizeproc=$(($2/$4))
   psizeproc=$(($3/$4))
 
+  mkdir -p mnt-fuse
+
+  mount="mnt-fuse"
+
+  if grep -qs "$mount" /proc/mounts; then
+    echo "The system was not supposed to be mounted! Unmounting and mounting again!"
+    fusermount -u mnt-fuse
+    if [ $filter == 'passthrough_hp' ]; then
+      ./example/$filter /dev/shm mnt-fuse/ &
+    else ./example/$filter mnt-fuse/
+    fi
+  else
+    if [ $filter == 'passthrough_hp' ]; then
+      ./example/$filter /dev/shm mnt-fuse/ &
+    else ./example/$filter mnt-fuse/
+    fi
+  fi
+
   file=out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
   then
@@ -88,9 +91,17 @@ function run_file(){
     mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} >> out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
   fi
 
+  if grep -qs "$mount" /proc/mounts
+  then
+    fusermount -u mnt-fuse
+  else
+    echo "The system was supposed to be mounted!"
+  fi
+
 }
 
 for i in $(seq 1 $nrun) ; do
+  echo $i
   for j in $isize_vec; do
     for k in $psize_vec; do
       for l in $nproc_vec; do
@@ -100,10 +111,3 @@ for i in $(seq 1 $nrun) ; do
     done
   done
 done
-
-if grep -qs "$mount" /proc/mounts
-then
-  fusermount -u mnt-fuse
-else
-  echo "The system was supposed to be mounted!"
-fi
