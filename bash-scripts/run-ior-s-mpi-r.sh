@@ -21,7 +21,7 @@ spack load gcc
 
 dir=$1
 filter=$2
-nrun=$4
+nrun=$3
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
