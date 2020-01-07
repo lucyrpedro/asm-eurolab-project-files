@@ -45,7 +45,7 @@ spack load gcc
 
 dir=$1
 filter=$2
-run=$4
+nrun=$4
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -111,7 +111,7 @@ function run_file(){
   fi
 }
 
-for i in $(seq 1 $run) ; do
+for i in $(seq 1 $nrun) ; do
   for j in $blocksize_vec ; do     # 7
     for k in $filesize_vec ; do   # 2
       run_file $i $j $k
