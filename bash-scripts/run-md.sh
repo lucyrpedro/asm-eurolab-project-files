@@ -34,7 +34,6 @@ if [ $dir == 'fuse' ]; then
   fi
 fi
 
-rm -rf /dev/shm/testfile
 rm -rf out
 mkdir -p out-md
 mkdir -p mnt-fuse
@@ -84,6 +83,7 @@ function run_file(){
   file=out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt
   if [[ ! -e $file ]]  # this option is not good as it sounds; when a parameter is changed, the file is not replaced
   then
+    rm -rf /dev/shm/*
     echo mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} > out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
     mpiexec -n ${nproc} ./md-workbench -R=1 -D=1 -I=${isizeproc} -P=${psizeproc} -- -D ${test_dir} >> out-md/${filter}-${dir}-${run}-${isize}-${psize}-${nproc}.txt 2>&1
   fi
