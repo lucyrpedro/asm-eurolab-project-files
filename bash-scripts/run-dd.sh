@@ -45,7 +45,7 @@ spack load gcc
 
 dir=$1
 filter=$2
-run=$4
+nrun=$4
 
 if [ $dir == 'tmpfs' ]
 then test_dir=/dev/shm/testfile
@@ -84,8 +84,10 @@ then
   blocksize_vec="100 128 1000"
   filesize_vec="30000"
 else
-  blocksize_vec="10000 16384 100000 131072 1000000 1048576"
-  filesize_vec="10485760 104857600 1048576000 10485760000"
+  # blocksize_vec="10000 16384 100000 131072 1000000 1048576"
+  # filesize_vec="10485760 104857600 1048576000 10485760000"
+  blocksize_vec="10000 1048576"
+  filesize_vec="10485760 10485760000"
 fi
 
 function run_file(){
@@ -109,7 +111,7 @@ function run_file(){
   fi
 }
 
-for i in $(seq 1 $run) ; do
+for i in $(seq 1 $nrun) ; do
   for j in $blocksize_vec ; do     # 7
     for k in $filesize_vec ; do   # 2
       run_file $i $j $k

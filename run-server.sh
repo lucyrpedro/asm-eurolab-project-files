@@ -33,8 +33,8 @@ then
 
   # Running the filters with a Bash script
 
-  ./run-dd.sh tmpfs passthrough $2 $3
-  ./run-dd.sh fuse passthrough $2 $3
+  ./run-dd.sh tmpfs passthrough  $2 $3
+  ./run-dd.sh fuse passthrough   $2 $3
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
 
@@ -74,8 +74,8 @@ then
 
   # Running the filters with a Bash script
 
-  ./run-ior-s-mpi.sh tmpfs passthrough $2 $3
-  ./run-ior-s-mpi.sh fuse passthrough $2 $3
+  ./run-ior-s-mpi.sh tmpfs passthrough  $2 $3
+  ./run-ior-s-mpi.sh fuse passthrough   $2 $3
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi/
 
@@ -100,8 +100,8 @@ then
 
   # Running the filters with a Bash script
 
-  ./run-ior-s-mpi-r.sh tmpfs passthrough $2 $3
-  ./run-ior-s-mpi-r.sh fuse passthrough $2 $3
+  ./run-ior-s-mpi-r.sh tmpfs passthrough  $2 $3
+  ./run-ior-s-mpi-r.sh fuse passthrough   $2 $3
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r/
 
@@ -183,14 +183,14 @@ else
   #
   # # Running the filters with a Bash script
   #
-  # ./run-dd.sh tmpfs passthrough $2 $3
-  # ./run-dd.sh fuse passthrough $2 $3
-  # ./run-dd.sh tmpfs passthrough_ll $2 $3
-  # ./run-dd.sh fuse passthrough_ll $2 $3
-  # ./run-dd.sh tmpfs passthrough_fh $2 $3
-  # ./run-dd.sh fuse passthrough_fh $2 $3
-  # ./run-dd.sh tmpfs passthrough_hp $2 $3
-  # ./run-dd.sh fuse passthrough_hp $2 $3
+  # ./run-dd.sh tmpfs passthrough     $2 $3
+  # ./run-dd.sh fuse passthrough      $2 $3
+  # ./run-dd.sh tmpfs passthrough_ll  $2 $3
+  # ./run-dd.sh fuse passthrough_ll   $2 $3
+  # ./run-dd.sh tmpfs passthrough_fh  $2 $3
+  # ./run-dd.sh fuse passthrough_fh   $2 $3
+  # ./run-dd.sh tmpfs passthrough_hp  $2 $3
+  # ./run-dd.sh fuse passthrough_hp   $2 $3
   #
   # cp -f ../../asm-eurolab-project-files/python-scripts/parse-dd.py out-dd/
   #
@@ -227,14 +227,14 @@ else
 
   # Running the filters with a Bash script
 
- # ./run-md.sh tmpfs passthrough $2 $3
- # ./run-md.sh fuse passthrough $2 $3
+ ./run-md.sh tmpfs passthrough $2 $3
+ ./run-md.sh fuse passthrough $2 $3
  # ./run-md.sh tmpfs passthrough_ll $2 $3
-  ./run-md.sh tmpfs passthrough_fh $2 $3
- # ./run-md.sh tmpfs passthrough_hp $2 $3
- # ./run-md.sh fuse passthrough_hp $2 $3
- # ./run-md.sh fuse passthrough_ll $2 $3
-  ./run-md.sh fuse passthrough_fh $2 $3
+ # ./run-md.sh fuse passthrough_ll  $2 $3
+ # ./run-md.sh tmpfs passthrough_fh $2 $3
+ # ./run-md.sh fuse passthrough_fh  $2 $3
+ ./run-md.sh tmpfs passthrough_hp $2 $3
+ ./run-md.sh fuse passthrough_hp $2 $3
 
   cp -f ../../asm-eurolab-project-files/python-scripts/parse-md.py out-md/
 
@@ -251,10 +251,10 @@ else
 
   # Cleaning the files
 
-  # cd ..
-  # rm -rf out-md
-  # rm run-md.sh
-  # rm md-workbench
+  cd ..
+  rm -rf out-md
+  rm run-md.sh
+  rm md-workbench
 
   ##### Install ior and then copy the executable!!!
 
@@ -262,7 +262,7 @@ else
   # echo 'Running ior'
   # echo 'xxxxxxxxxxxxxxxxxx'
   #
-  # cd ../../asm-eurolab-project-files
+  # # cd ../../asm-eurolab-project-files
   # cp bash-scripts/run-ior-s-mpi.sh ../libfuse/build/
   # cp bash-scripts/run-ior-s-mpi-r.sh ../libfuse/build/
   # cp benchmarks/ior ../libfuse/build/
@@ -277,14 +277,14 @@ else
   #
   # # Running the filters with a Bash script
   #
-  # ./run-ior-s-mpi.sh tmpfs passthrough $2 $3
-  # ./run-ior-s-mpi.sh fuse passthrough $2 $3
+  # ./run-ior-s-mpi.sh tmpfs passthrough    $2 $3
+  # ./run-ior-s-mpi.sh fuse passthrough     $2 $3
   # ./run-ior-s-mpi.sh tmpfs passthrough_ll $2 $3
-  # ./run-ior-s-mpi.sh fuse passthrough_ll $2 $3
+  # ./run-ior-s-mpi.sh fuse passthrough_ll  $2 $3
   # ./run-ior-s-mpi.sh tmpfs passthrough_fh $2 $3
-  # ./run-ior-s-mpi.sh fuse passthrough_fh $2 $3
+  # ./run-ior-s-mpi.sh fuse passthrough_fh  $2 $3
   # ./run-ior-s-mpi.sh tmpfs passthrough_hp $2 $3
-  # ./run-ior-s-mpi.sh fuse passthrough_hp $2 $3
+  # ./run-ior-s-mpi.sh fuse passthrough_hp  $2 $3
   #
   # cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi.py out-ior-s-mpi/
   #
@@ -298,7 +298,7 @@ else
   #
   # cp -f results-ior-s-mpi.csv ../../../asm-eurolab-project-files/results-database/
   # cp -rf ../out-ior-s-mpi/ ../../../asm-eurolab-project-files/out-files/
-
+  #
   # ## Running IOR-s-mpi-r
   #
   # echo 'xxxxxxxxxxxxxxxxxx'
@@ -309,14 +309,14 @@ else
   #
   # # Running the filters with a Bash script
   #
-  # ./run-ior-s-mpi-r.sh tmpfs passthrough $2 $3
-  # ./run-ior-s-mpi-r.sh fuse passthrough $2 $3
+  # ./run-ior-s-mpi-r.sh tmpfs passthrough    $2 $3
+  # ./run-ior-s-mpi-r.sh fuse passthrough     $2 $3
   # ./run-ior-s-mpi-r.sh tmpfs passthrough_ll $2 $3
-  # ./run-ior-s-mpi-r.sh fuse passthrough_ll $2 $3
+  # ./run-ior-s-mpi-r.sh fuse passthrough_ll  $2 $3
   # ./run-ior-s-mpi-r.sh tmpfs passthrough_fh $2 $3
-  # ./run-ior-s-mpi-r.sh fuse passthrough_fh $2 $3
+  # ./run-ior-s-mpi-r.sh fuse passthrough_fh  $2 $3
   # ./run-ior-s-mpi-r.sh tmpfs passthrough_hp $2 $3
-  # ./run-ior-s-mpi-r.sh fuse passthrough_hp $2 $3
+  # ./run-ior-s-mpi-r.sh fuse passthrough_hp  $2 $3
   #
   # cp -f ../../asm-eurolab-project-files/python-scripts/parse-ior-s-mpi-r.py out-ior-s-mpi-r/
   #
@@ -339,7 +339,7 @@ else
   # rm run-ior-s-mpi.sh
   # rm run-ior-s-mpi-r.sh
   # rm ior
-
+  #
   # echo 'xxxxxxxxxxxxxxxxxx'
   # echo 'Updating Git'
   # echo 'xxxxxxxxxxxxxxxxxx'
