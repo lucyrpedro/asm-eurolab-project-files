@@ -11,9 +11,9 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-pdf("figs-ior-s-mpi.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
+pdf("figs-ior-s-mpi-r.pdf") # either save all files in one pdf or the files in specific pdfs; find an option to automatise the choice
 
-d = read.csv("results-ior-s-mpi.csv")
+d = read.csv("results-ior-s-mpi-r.csv")
 
 filter_op     = levels(as.factor(d$filter))
 size_op       = levels(as.factor(d$size))
@@ -86,7 +86,7 @@ for (k in 1:length(filter_op)){
 #        print(DF)
 
         filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("IOR Sequential - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
+        title = sprintf("IOR Random - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -115,7 +115,7 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_time_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("IOR Sequential - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
+        title = sprintf("IOR Random - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -144,7 +144,7 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "read");
-        title = sprintf("IOR Sequential - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
+        title = sprintf("IOR Random - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
@@ -173,7 +173,7 @@ for (k in 1:length(filter_op)){
     #    print(DF)
 
         filename = sprintf("%s_%s_tp_%s.pdf", filter_op[k], size_op[j], "write");
-        title = sprintf("IOR Sequential - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
+        title = sprintf("IOR Random - Filter %s - Size %s bytes", filter_op[k], size_op[j]);
 
 #        pdf(filename)
         cols = rainbow(len_bs, s = 0.5)
